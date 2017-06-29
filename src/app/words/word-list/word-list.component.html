@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Words
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openEditor()">
+        <ion-icon name="ios-add-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar></ion-searchbar>
+  <ion-item-group *ngFor="let wordGroup of wordGroups">
+    <ion-item-divider color="light">{{ wordGroup.key }}</ion-item-divider>
+    <ion-item *ngFor="let word of wordGroup.words">
+      <h2>{{ word.value }}</h2>
+      <p>{{ word.translation.value }}</p>
+    </ion-item>
+  </ion-item-group>
+</ion-content>

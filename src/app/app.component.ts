@@ -11,7 +11,7 @@ import { TabsComponent } from "./tabs/tabs.component";
 })
 export class AppComponent {
 
-  rootPage: any = TabsComponent;
+  root: any = TabsComponent;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

@@ -4,7 +4,7 @@
       Topics
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="openEditor()">
         <ion-icon name="ios-add-outline"></ion-icon>
       </button>
     </ion-buttons>
@@ -15,7 +15,7 @@
   <ion-searchbar></ion-searchbar>
   <ion-list>
     <ion-item-sliding>
-      <button ion-item>
+      <button ion-item (click)="seeWords()">
         <h2>A street cat named Bob</h2>
         <p>38 words</p>
       </button>
