@@ -5,11 +5,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { AppComponent } from './app.component';
-import { HomeModule } from "./home/home.module";
+import { TabsModule } from "./tabs/tabs.module";
 
 @NgModule({
   imports: [
-    HomeModule,
+    TabsModule,
     BrowserModule,
     IonicModule.forRoot(AppComponent),
   ],

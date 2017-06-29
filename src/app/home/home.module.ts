@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { IonicModule } from 'ionic-angular';
+
 import { HomeComponent } from "./home.component";
 
 @NgModule({
@@ -10,6 +11,9 @@ import { HomeComponent } from "./home.component";
     HomeComponent
   ],
   entryComponents: [
+    HomeComponent
+  ],
+  exports: [
     HomeComponent
   ]
 })
