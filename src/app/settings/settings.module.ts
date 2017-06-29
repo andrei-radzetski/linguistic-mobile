@@ -17,6 +17,4 @@ import { SettingsComponent } from "./settings.component";
     SettingsComponent
   ]
 })
-export class SettingsModule {
-
-}
+export class SettingsModule { }

@@ -23,6 +23,4 @@ import { SearchModule } from "../search/search.module";
     TabsComponent
   ]
 })
-export class TabsModule {
-
-}
+export class TabsModule { }
