@@ -11,8 +11,8 @@
     <ion-card-header>
       {{ word.value }}
     </ion-card-header>
-    <ion-card-content>
-      dasads
+    <ion-card-content *ngFor="let synonym of word.synonyms">
+      {{ synonym.value }}
     </ion-card-content>
   </ion-card>
 
@@ -20,8 +20,8 @@
     <ion-card-header>
       {{ word.translation.value }}
     </ion-card-header>
-    <ion-card-content>
-      dasads
+    <ion-card-content *ngFor="let synonym of word.translation.synonyms">
+      {{ synonym.value }}
     </ion-card-content>
   </ion-card>
 

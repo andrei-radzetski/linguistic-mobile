@@ -24,7 +24,9 @@ export class AppMock {
     if (topic.name === 'A street cat named Bob') {
       let wordGroup1 = new WordGroup('C');
       let word1 = new Word('Claim');
+      word1.pushSynonyms(new Word('Demand'));
       word1.translation = new Word('Требовать');
+      word1.translation.pushSynonyms(new Word('Претендовать'))
       word1.pushTopics(topic1);
       let word11 = new Word('Certain');
       word11.translation = new Word('Определенный');
