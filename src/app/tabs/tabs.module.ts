@@ -3,15 +3,15 @@ import { IonicModule } from 'ionic-angular';
 
 import { TabsComponent } from "./tabs.component";
 import { HomeModule } from "../home/home.module";
-import { SearchModule } from "../search/search.module";
 import { TopicsModule } from "../topics/topics.module";
+import { WordsModule } from "../words/words.module";
 import { SettingsModule } from "../settings/settings.module";
 
 @NgModule({
   imports: [
     HomeModule,
-    SearchModule,
     TopicsModule,
+    WordsModule,
     SettingsModule,
     IonicModule.forRoot(TabsComponent)
   ],

@@ -9,6 +9,10 @@ import { AppMock } from '../../app.mock';
 @Injectable()
 export class WordService {
 
+  findAll(): Observable<Array<WordGroup>> {
+    return Observable.of(AppMock.getAllWords());
+  }
+
   findByTopic(topic: Topic): Observable<Array<WordGroup>> {
     return Observable.of(AppMock.getWords(topic));
   }

@@ -23,16 +23,21 @@ export class WordListComponent implements OnInit {
     private modalCtrl: ModalController,
     private navCtrl: NavController,
     private wordService: WordService,
-    private navParams: NavParams) { 
-      
-      this.topic = navParams.get('topic');
+    private navParams: NavParams) {
+
+    this.topic = navParams.get('topic');
   }
 
   ngOnInit() {
-    this.wordService.findByTopic(this.topic)
-      .subscribe((wordsGroups: Array<WordGroup>) => {
-        this.wordGroups = wordsGroups;
-      });
+    let source = this.wordService.findAll();
+
+    if (this.topic) {
+      source = this.wordService.findByTopic(this.topic);
+    }
+
+    source.subscribe((wordsGroups: Array<WordGroup>) => {
+      this.wordGroups = wordsGroups;
+    });
   }
 
   private openEditor() {
