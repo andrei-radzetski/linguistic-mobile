@@ -6,6 +6,7 @@ import { WordListComponent } from './word-list/word-list.component';
 import { WordEditorComponent } from './word-editor/word-editor.component';
 
 import { WordService } from "./shared/word.service";
+import { WordMock } from "./shared/word.mock";
 
 @NgModule({
   imports: [

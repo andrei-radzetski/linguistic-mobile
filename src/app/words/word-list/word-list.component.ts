@@ -17,7 +17,10 @@ export class WordListComponent implements OnInit {
   constructor(private modalCtrl: ModalController, private wordService: WordService) { }
 
   ngOnInit() {
-    this.wordGroups = this.wordService.findByTopic();
+    this.wordService.findByTopic()
+      .subscribe((wordsGroups: Array<WordGroup>) => {
+        this.wordGroups = wordsGroups;
+      });
   }
 
   openEditor() {

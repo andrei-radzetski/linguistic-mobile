@@ -1,33 +1,15 @@
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import 'rxjs/add/observable/of'
 
-import { Word } from "./word.model";
 import { WordGroup } from "./word-group.model";
+import { WordMock } from "./word.mock";
 
 @Injectable()
 export class WordService {
 
-  findByTopic(): Array<WordGroup> {
-
-    let wordGroups = new Array<WordGroup>();
-
-    let wordGroup1 = new WordGroup('C');
-    let word1 = new Word('Certain');
-    word1.id = 1;
-    word1.translation = new Word('Определенный');
-    wordGroup1.push(word1);
-
-    let wordGroup2 = new WordGroup('M');
-    let word2 = new Word('Mankind');
-    let word3 = new Word('Mindset');
-    word2.id = 2;
-    word2.translation = new Word('Человечество');
-    word3.id = 3;
-    word3.translation = new Word('Образ мышления');
-    wordGroup2.push(word2, word3);
-
-    wordGroups.push(wordGroup1, wordGroup2);
-
-    return wordGroups;
+  findByTopic(): Observable<Array<WordGroup>> {
+    return Observable.of(WordMock.getWords());
   }
 
 }
