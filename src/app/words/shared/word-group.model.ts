@@ -10,8 +10,24 @@ export class WordGroup {
     this.words = new Array<Word>();
   }
 
-  push(...word: Word[]) {
-    this.words.push(...word);
+  /**
+   * Checks if there are words.
+   */
+  hasWords(): boolean {
+    return this.words != null && this.words.length > 0;
+  }
+
+  /**
+   * Appends new words, and returns the new length of the words. 
+   * 
+   * @param words New words.
+   */
+  pushWords(...words: Word[]): number {
+    if (!this.words) {
+      this.words = new Array<Word>();
+    }
+
+    return this.words.push(...words);
   }
 
 }

@@ -29,7 +29,7 @@ export class WordListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.wordService.findByTopic(null)
+    this.wordService.findByTopic(this.topic)
       .subscribe((wordsGroups: Array<WordGroup>) => {
         this.wordGroups = wordsGroups;
       });

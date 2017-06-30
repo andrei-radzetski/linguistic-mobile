@@ -3,13 +3,14 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/of'
 
 import { Topic } from './topic.model';
-import { TopicMock } from "./topic.mock";
+
+import { AppMock } from "../../app.mock";
 
 @Injectable()
 export class TopicService {
 
   findAll(): Observable<Array<Topic>> {
-    return Observable.of(TopicMock.getTopics());
+    return Observable.of(AppMock.getTopics());
   } 
 
 }
