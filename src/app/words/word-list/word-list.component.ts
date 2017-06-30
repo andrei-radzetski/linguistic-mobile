@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from 'ionic-angular';
+import { ModalController, NavParams, NavController } from 'ionic-angular';
 
 import { WordEditorComponent } from '../word-editor/word-editor.component';
+import { WordViewerComponent } from '../word-viewer/word-viewer.component';
 
 import { WordGroup } from '../shared/word-group.model';
+import { Word } from '../shared/word.model';
+import { Topic } from "../../topics/shared/topic.model";
+
 import { WordService } from "../shared/word.service";
 
 @Component({
@@ -13,19 +17,33 @@ import { WordService } from "../shared/word.service";
 export class WordListComponent implements OnInit {
 
   private wordGroups: Array<WordGroup>;
+  private topic: Topic;
 
-  constructor(private modalCtrl: ModalController, private wordService: WordService) { }
+  constructor(
+    private modalCtrl: ModalController,
+    private navCtrl: NavController,
+    private wordService: WordService,
+    private navParams: NavParams) { 
+      
+      this.topic = navParams.get('topic');
+  }
 
   ngOnInit() {
-    this.wordService.findByTopic()
+    this.wordService.findByTopic(null)
       .subscribe((wordsGroups: Array<WordGroup>) => {
         this.wordGroups = wordsGroups;
       });
   }
 
-  openEditor() {
+  private openEditor() {
     let editor = this.modalCtrl.create(WordEditorComponent);
     editor.present();
+  }
+
+  private openViewer(word: Word) {
+    this.navCtrl.push(WordViewerComponent, {
+      word: word
+    });
   }
 
 }

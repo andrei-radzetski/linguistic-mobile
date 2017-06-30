@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 
 import { WordListComponent } from './word-list/word-list.component';
 import { WordEditorComponent } from './word-editor/word-editor.component';
+import { WordViewerComponent } from './word-viewer/word-viewer.component';
 
 import { WordService } from "./shared/word.service";
-import { WordMock } from "./shared/word.mock";
 
 @NgModule({
   imports: [
@@ -15,11 +15,13 @@ import { WordMock } from "./shared/word.mock";
   ],
   declarations: [
     WordListComponent,
-    WordEditorComponent
+    WordEditorComponent,
+    WordViewerComponent
   ],
   entryComponents: [
     WordListComponent,
-    WordEditorComponent
+    WordEditorComponent,
+    WordViewerComponent
   ],
   providers: [
     WordService

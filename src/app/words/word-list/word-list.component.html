@@ -15,9 +15,9 @@
   <ion-searchbar></ion-searchbar>
   <ion-item-group *ngFor="let wordGroup of wordGroups">
     <ion-item-divider color="light">{{ wordGroup.key }}</ion-item-divider>
-    <ion-item *ngFor="let word of wordGroup.words">
+    <button detail-none ion-item *ngFor="let word of wordGroup.words" (click)="openViewer(word)">
       <h2>{{ word.value }}</h2>
       <p>{{ word.translation.value }}</p>
-    </ion-item>
+    </button>
   </ion-item-group>
 </ion-content>

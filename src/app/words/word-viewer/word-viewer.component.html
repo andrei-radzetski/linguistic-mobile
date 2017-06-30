@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ word.value }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <ion-card>
+    <ion-card-header>
+      {{ word.value }}
+    </ion-card-header>
+    <ion-card-content>
+      dasads
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      {{ word.translation.value }}
+    </ion-card-header>
+    <ion-card-content>
+      dasads
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="word.hasTopics()">
+    <ion-card-content>
+      <ion-badge class="fourth-margin-right fourth-margin-bottom" *ngFor="let topic of word.topics">
+        {{ topic.name }}
+      </ion-badge>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

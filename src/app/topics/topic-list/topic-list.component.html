@@ -14,32 +14,10 @@
 <ion-content>
   <ion-searchbar></ion-searchbar>
   <ion-list>
-    <ion-item-sliding>
-      <button ion-item (click)="seeWords()">
-        <h2>A street cat named Bob</h2>
-        <p>38 words</p>
-      </button>
-      <ion-item-options side="right">
-        <button ion-button color="danger">
-        <ion-icon name="ios-close-outline"></ion-icon>
-      </button>
-      </ion-item-options>
-    </ion-item-sliding>
-    <ion-item-sliding>
-      <button ion-item>
-        <h2>Verbs</h2>
-        <p>107 words</p>
-      </button>
-      <ion-item-options side="right">
-        <button ion-button color="danger">
-        <ion-icon name="ios-close-outline"></ion-icon>
-      </button>
-      </ion-item-options>
-    </ion-item-sliding>
-    <ion-item-sliding>
-      <button ion-item>
-        <h2>Other</h2>
-        <p>67 words</p>
+    <ion-item-sliding *ngFor="let topic of topics">
+      <button ion-item (click)="seeWords(topic)">
+        <h2>{{ topic.name }}</h2>
+        <p>{{ topic.getWordsNumberTemplate() }}</p>
       </button>
       <ion-item-options side="right">
         <button ion-button color="danger">
