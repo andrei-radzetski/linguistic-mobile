@@ -1,4 +1,4 @@
-import { Topic } from "../../topics/shared/topic.model";
+import { Topic } from '../../topics/shared/topic.model';
 
 export class Word {
 

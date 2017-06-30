@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController } from "ionic-angular";
+import { ViewController } from 'ionic-angular';
 
 @Component({
   selector: 'lgsc-topic-editor',
@@ -7,7 +7,10 @@ import { ViewController } from "ionic-angular";
 })
 export class TopicEditorComponent {
 
-  constructor(public viewCtrl: ViewController) { }
+  constructor(
+    public viewCtrl: ViewController) { 
+
+  }
 
   cancel() {
     this.viewCtrl.dismiss();

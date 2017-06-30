@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
-import { HomeComponent } from "../home/home.component";
-import { TopicListComponent } from "../topics/topic-list/topic-list.component";
-import { WordListComponent } from "../words/word-list/word-list.component";
-import { SettingsComponent } from "../settings/settings.component";
+import { HomeComponent } from '../home/home.component';
+import { TopicListComponent } from '../topics/topic-list/topic-list.component';
+import { WordListComponent } from '../words/word-list/word-list.component';
+import { SettingsComponent } from '../settings/settings.component';
 
 @Component({
   selector: 'lnsc-tabs',
@@ -11,12 +11,16 @@ import { SettingsComponent } from "../settings/settings.component";
 })
 export class TabsComponent {
 
-  private homeRoot: any = HomeComponent;
+  public static readonly TOPICS_TAB_INDEX = 1;
 
-  private topicsRoot: any = TopicListComponent;
+  public static readonly WORDS_TAB_INDEX = 2;
 
-  private wordsRoot: any = WordListComponent;
+  homeRoot: any = HomeComponent;
+
+  topicsRoot: any = TopicListComponent;
+
+  wordsRoot: any = WordListComponent;
   
-  private settingsRoot: any = SettingsComponent;
+  settingsRoot: any = SettingsComponent;
 
 }

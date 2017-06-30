@@ -6,6 +6,33 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h1>Welcome to Linguistic!</h1>
+<ion-content padding class="outer-content">
+  <ion-card>
+    <ion-card-header text-center>
+      Welcome to Linguistic!
+    </ion-card-header>
+    <ion-list>
+      <button ion-item (click)="startLearning()">
+        <ion-icon name="ios-school-outline" item-start></ion-icon>
+        Start learning
+      </button>
+
+      <button ion-item (click)="addWord()">
+        <ion-icon name="ios-add-circle-outline" item-start></ion-icon>
+        Add new word
+      </button>
+
+      <button ion-item (click)="openTopics()">
+        <ion-icon name="ios-folder-outline" item-start></ion-icon>
+        All topics
+        <ion-badge item-end>3</ion-badge>
+      </button>
+
+      <button ion-item (click)="openWords()">
+        <ion-icon name="ios-list-box-outline" item-start></ion-icon>
+        All words
+        <ion-badge item-end>9</ion-badge>
+      </button>
+    </ion-list>
+  </ion-card>
 </ion-content>

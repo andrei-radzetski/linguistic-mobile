@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController } from "ionic-angular";
+import { NavController, ModalController } from 'ionic-angular';
 
-import { TopicEditorComponent } from "../topic-editor/topic-editor.component";
-import { WordListComponent } from "../../words/word-list/word-list.component";
+import { TopicEditorComponent } from '../topic-editor/topic-editor.component';
+import { WordListComponent } from '../../words/word-list/word-list.component';
 
-import { Topic } from "../shared/topic.model";
-import { TopicService } from "../shared/topic.service";
+import { Topic } from '../shared/topic.model';
+import { TopicService } from '../shared/topic.service';
 
 @Component({
   selector: 'lgsc-topic-list',
@@ -28,12 +28,12 @@ export class TopicListComponent implements OnInit {
     })
   }
 
-  private openEditor() {
+  openEditor() {
     let editor = this.modalCtrl.create(TopicEditorComponent);
     editor.present();
   }
 
-  private seeWords(topic: Topic) {
+  seeWords(topic: Topic) {
     this.navCtrl.push(WordListComponent, {
       topic: topic
     });

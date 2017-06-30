@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { AppComponent } from './app.component';
-import { TabsModule } from "./tabs/tabs.module";
+import { TabsModule } from './tabs/tabs.module';
 
 @NgModule({
   imports: [
