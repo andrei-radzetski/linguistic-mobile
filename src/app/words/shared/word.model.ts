@@ -2,6 +2,9 @@ import { Topic } from '../../topics/shared/topic.model';
 
 export class Word {
 
+  public static readonly TABLE_NAME = 'WORDS';
+  public static readonly TABLE_DECLARATION = 'ID integer primary key, VALUE text';
+
   public id: number;
   public value: string;
   public language: string;

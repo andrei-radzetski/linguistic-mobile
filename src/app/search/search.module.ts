@@ -5,7 +5,7 @@ import { SearchComponent } from './search.component';
 
 @NgModule({
   imports: [
-    IonicModule.forRoot(SearchComponent)
+    IonicModule
   ],
   declarations: [
     SearchComponent

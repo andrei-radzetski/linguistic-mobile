@@ -4,6 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsComponent } from './tabs/tabs.component';
+import { DbService } from './db/db.service';
+import { DbInitializationService } from './db/db-initialization.service';
 
 @Component({
   selector: 'lnsc-app',
@@ -16,11 +18,17 @@ export class AppComponent {
   constructor(
     platform: Platform,
     statusBar: StatusBar,
-    splashScreen: SplashScreen) {
+    splashScreen: SplashScreen,
+    dbService: DbService, 
+    dbInitializationService: DbInitializationService) {
 
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
+      
+      dbService.open().subscribe(() => {
+        dbInitializationService.initialize();
+      });
     });
   }
 }

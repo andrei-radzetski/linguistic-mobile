@@ -13,7 +13,7 @@ import { SettingsModule } from '../settings/settings.module';
     TopicsModule,
     WordsModule,
     SettingsModule,
-    IonicModule.forRoot(TabsComponent)
+    IonicModule
   ],
   declarations: [
     TabsComponent

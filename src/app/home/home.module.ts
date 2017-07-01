@@ -8,7 +8,7 @@ import { WordsModule } from '../words/words.module';
 @NgModule({
   imports: [
     WordsModule,
-    IonicModule.forRoot(HomeComponent)
+    IonicModule
   ],
   declarations: [
     HomeComponent

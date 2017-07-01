@@ -12,7 +12,7 @@ import { TopicService } from './shared/topic.service';
   imports: [
     WordsModule,
     CommonModule,
-    IonicModule.forRoot(TopicListComponent)
+    IonicModule
   ],
   declarations: [
     TopicListComponent,

@@ -11,7 +11,7 @@ import { WordService } from './shared/word.service';
 @NgModule({
   imports: [
     CommonModule,
-    IonicModule.forRoot(WordListComponent)
+    IonicModule
   ],
   declarations: [
     WordListComponent,

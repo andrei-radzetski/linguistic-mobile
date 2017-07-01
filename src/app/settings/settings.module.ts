@@ -5,7 +5,7 @@ import { SettingsComponent } from "./settings.component";
 
 @NgModule({
   imports: [
-    IonicModule.forRoot(SettingsComponent)
+    IonicModule
   ],
   declarations: [
     SettingsComponent
