@@ -8,7 +8,7 @@ import { Observable, Observer } from 'rxjs';
 @Injectable()
 export class DbService {
 
-  public static readonly DB_NAME = 'linguistic_test111.db';
+  public static readonly DB_NAME = 'linguistic.db';
   public static readonly DB_LOCATION = 'default';
 
   private _db: SQLiteObject;

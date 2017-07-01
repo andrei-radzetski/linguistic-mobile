@@ -1,79 +1,88 @@
 import { Injectable } from '@angular/core';
+import { Observable, Observer } from 'rxjs';
+import { SQLiteTransaction } from '@ionic-native/sqlite';
 
 import { DbService } from "./db.service";
 import { Topic } from "../topics/shared/topic.model";
 import { Word } from "../words/shared/word.model";
 
+/*
+  //todo
+  
+  tx.executeSql('INSERT INTO TOPICS (NAME) VALUES (?)', ['Bla1'], null, e => this.error('TOPICS', e));
+  tx.executeSql('INSERT INTO TOPICS (NAME) VALUES (?)', ['Bla2'], null, e => this.error('TOPICS', e));
+  tx.executeSql('INSERT INTO TOPICS (NAME) VALUES (?)', ['Bla3'], null, e => this.error('TOPICS', e));
+
+  this.dbService.db.executeSql('SELECT count(*) FROM TOPICS', [])
+    .then(rs => {
+      if (rs.rows.length > 0) {
+        for (let i = 0; i < rs.rows.length; i++) {
+          console.log(rs.rows.item(i)['count(*)']);
+        }
+      }
+    }).catch(e => console.log(e));
+
+  this.dbService.db.executeSql('SELECT * FROM TOPICS', [])
+    .then(rs => {
+      if (rs.rows.length > 0) {
+        for (let i = 0; i < rs.rows.length; i++) {
+          console.log(rs.rows.item(i).ID);
+          console.log(rs.rows.item(i).NAME);
+        }
+      }
+    }).catch(e => console.log(e));
+*/
 @Injectable()
 export class DbInitializationService {
 
   constructor(private dbService: DbService) { }
 
+  /**
+   * Initialize tables and data in the database.
+   */
   initialize() {
-    console.log('===============DbInitializationService initialize==============');
+    this.createTables().subscribe();
   }
-  /*
-    private init() {
-    this.db.transaction((tx: SQLiteTransaction) => {
-      this.executeCreateTableSQL(tx, Topic.TABLE_NAME, Topic.TABLE_DECLARATION);
-      this.executeCreateTableSQL(tx, Word.TABLE_NAME, Word.TABLE_DECLARATION);
 
-      tx.executeSql('INSERT INTO TOPICS (NAME) VALUES (?)', ['Bla1'], null, e => this.error('TOPICS', e));
-      tx.executeSql('INSERT INTO TOPICS (NAME) VALUES (?)', ['Bla2'], null, e => this.error('TOPICS', e));
-      tx.executeSql('INSERT INTO TOPICS (NAME) VALUES (?)', ['Bla3'], null, e => this.error('TOPICS', e));
-    })
-      .then(() => console.log('Database was initialized successful.'))
-      .catch(e => {
-        console.log('Database initializing failure.')
-        console.log(e)
+  /**
+   * Create empty tables if not exists.
+   */
+  private createTables(): Observable<any> {
+    return Observable.create((observer: Observer<any>) => {
+      this.dbService.db.transaction((tx: SQLiteTransaction) => {
+        this.executeSql(tx, this.buildCreateTableSQL(Topic.TABLE_NAME, Topic.TABLE_DECLARATION));
+        this.executeSql(tx, this.buildCreateTableSQL(Word.TABLE_NAME, Word.TABLE_DECLARATION));
       });
+    });
   }
 
-  private executeCreateTableSQL(tx: SQLiteTransaction, name: string, declaration: string) {
-    let sql = this.createTableSQL(name, declaration);
-
-    console.log(sql);
-
-    tx.executeSql(sql, [],
-      () => this.success(name),
-      e => this.error(name, e));
+  /**
+   * Execute sql query in the transaction. 
+   */
+  private executeSql(tx: SQLiteTransaction, sql: string, values?: any) {
+    tx.executeSql(sql, values, () => this.success(sql), e => this.error(sql, e))
   }
 
-  private createTableSQL(name: string, declaration: string): string {
-    return `CREATE TABLE IF NOT EXISTS ${name} (${declaration})`;
+  /**
+   * Successful execution sql query callback.
+   */
+  private success(sql: string) {
+    console.log(`SQL was executed: "${sql}"`);
   }
 
-  private success(name: string) {
-    console.log(`Table "${name}" was created.`);
-  }
-
-  private error(name: string, e: any) {
-    console.log(`Table "${name}" creation failure.`);
+  /**
+   * Failure execution sql query callback.
+   */
+  private error(sql: string, e: any) {
+    console.log(`SQL was NOT executed: "${sql}"`);
     console.log(e)
   }
 
-  console.log('====================startLearning====================');
-    this.dbService.db.executeSql('SELECT count(*) FROM TOPICS', [])
-      .then(rs => {
-        if (rs.rows.length > 0) {
-          for (let i = 0; i < rs.rows.length; i++) {
-            console.log(rs.rows.item(i)['count(*)']);
-          }
-        }
-      }).catch(e => console.log(e));
-
-    this.dbService.db.executeSql('SELECT * FROM TOPICS', [])
-      .then(rs => {
-        if (rs.rows.length > 0) {
-          for (let i = 0; i < rs.rows.length; i++) {
-            console.log('===========================================');
-            console.log(rs.rows.item(i).ID);
-            console.log(rs.rows.item(i).NAME);
-            console.log('===========================================');
-          }
-        }
-      }).catch(e => console.log(e));
-  
+  /**
+   *  Build "CREATE TABLE IF NOT EXISTS" sql query.  
    */
+  private buildCreateTableSQL(name: string, declaration: string): string {
+    return `CREATE TABLE IF NOT EXISTS ${name} (${declaration})`;
+  }
 
 }
