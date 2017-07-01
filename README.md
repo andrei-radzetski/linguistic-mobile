@@ -1,5 +1,5 @@
 # Linguistic (mobile)
-Simple logistics web client application.
+Linguistic mobile application.
 
 ## Getting Started
 ### Prerequisities
