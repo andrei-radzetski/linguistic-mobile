@@ -1,23 +1,21 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { ViewController, NavParams } from 'ionic-angular';
+
+import { Topic } from "../shared/topic.model";
+import { AbstractEditorComponent } from "../../shared/editor/abstract-editor.component";
 
 @Component({
   selector: 'lgsc-topic-editor',
   templateUrl: 'topic-editor.component.html'
 })
-export class TopicEditorComponent {
+export class TopicEditorComponent extends AbstractEditorComponent<Topic> {
 
-  constructor(
-    public viewCtrl: ViewController) { 
-
+  constructor(viewCtrl: ViewController, params: NavParams) { 
+      super(viewCtrl, params, { create: (): Topic => new Topic() });
   }
 
-  cancel() {
-    this.viewCtrl.dismiss();
-  }
-
-  done() {
-    this.viewCtrl.dismiss();
+  validate(): boolean {
+    return super.validate();
   }
 
 }
