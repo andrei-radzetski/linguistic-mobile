@@ -1,26 +1,38 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# Linguistic (mobile)
+Simple logistics web client application.
 
-## How to use this template
+## Getting Started
+### Prerequisities
+Make you sure that Ionic was installed.
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+### Installing
+ 1. Download or clone project:
+  
+  ```bash
+  $ git clone https://github.com/andrei-radzetski/linguistic-mobile.git
+  ```
+ 2. Move to the project directory and install the project:
+  
+  ```bash
+  $ npm install
+  ```
+ 3. Build application:
+  
+  ```bash
+  $ npm run build
+  ```
+ 4. Run application:
+  
+  ```bash
+  $ npm run ionic:serve
+  ```
+ 4. Open the project in browser:
+  
+  ```
+  http://localhost:8100/
+  ```
+  
+## Authors
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
-
-### With the Ionic CLI:
-
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myBlank blank
-```
-
-Then, to run it, cd into `myBlank` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
-```
-
-Substitute ios for android if not on a Mac.
+* **Andrei Radzetski** - [Github](https://github.com/andrei-radzetski), [Facebook](https://www.facebook.com/stels666)
 
