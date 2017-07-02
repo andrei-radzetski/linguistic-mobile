@@ -11,7 +11,7 @@ import { SQLQuery } from "./sql-query.model";
 export class DBManagementService {
 
   public static readonly SQL_CONFIG: SQLiteDatabaseConfig = {
-    name: 'linguistic24.db',
+    name: 'linguistic31.db',
     location: 'default'
   }
 
@@ -86,11 +86,43 @@ export class DBManagementService {
     });
   }
 
+  /**
+   * Execute SQL query and get rows.
+   * 
+   * @param {SQLQuery} query SQL query.
+   */
+  select(query: SQLQuery): Observable<any> {
+    let rows = null;
+    return this.executeSQL(query)
+      .flatMap((rs: any) => Observable.of(rs.rows))
+      .flatMap((_rows: any) => {
+        rows = _rows;
+        return rows.length > 0
+          ? Observable.range(0, rows.length).flatMap((index: number) => Observable.of(rows.item(index)))
+          : Observable.of([])
+      });
+  }
+
+  /**
+   * Get all orders of the specified table.
+   *
+   * @param {string} tableName Table name.
+   */
+  all(tableName: string): Observable<any> {
+    return this.select(SQLQuery.selectAll(tableName));
+  }
+
+  /**
+   * Get count of the specified table.
+   * 
+   * @param {string} tableName Table name.
+   */
   count(tableName: string): Observable<number> {
-    return this.executeSQL(new SQLQuery(`SELECT count(*) FROM ${tableName}`))
-      .flatMap((rs: any) => Observable.from(rs.rows))
-      .flatMap((value: any, index: number) => Observable.of(value.item(index)))
-      .flatMap((element: any) => Observable.of(element['count(*)']));
+    return this.executeSQL(SQLQuery.count(tableName))
+      .flatMap((rs: any) => Observable.of(rs.rows))
+      .flatMap((rows: any) => rows && rows.length > 0
+        ? Observable.of(rows.item(0)[SQLQuery.COUNT_STATEMENT])
+        : Observable.of(0));
   }
 
   /**
