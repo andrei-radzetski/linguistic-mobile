@@ -4,17 +4,24 @@ import 'rxjs/add/observable/of'
 
 import { WordGroup } from './word-group.model';
 import { Topic } from '../../topics/shared/topic.model';
-import { AppMock } from '../../app.mock';
+import { WordDAO } from '../words.dao';
 
 @Injectable()
 export class WordService {
 
+  constructor(private dao: WordDAO) { }
+
   findAll(): Observable<Array<WordGroup>> {
-    return Observable.of(AppMock.getAllWords());
+    // this.dao.findAll();
+    return Observable.of([]);
+  }
+
+  count(): Observable<number> {
+    return this.dao.count();
   }
 
   findByTopic(topic: Topic): Observable<Array<WordGroup>> {
-    return Observable.of(AppMock.getWords(topic));
+    return Observable.of([]);
   }
 
 }

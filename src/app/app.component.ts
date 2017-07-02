@@ -7,6 +7,7 @@ import { TabsComponent } from './tabs/tabs.component';
 
 import { DBManagementService } from './db/db-management.service';
 import { DBInitializationService } from './db/db-initialization.service';
+import { AppService } from "./app.service";
 
 @Component({
   selector: 'lnsc-app',
@@ -17,19 +18,33 @@ export class AppComponent {
   root: any = TabsComponent;
 
   constructor(
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
+    private appService: AppService,
     platform: Platform,
-    statusBar: StatusBar,
-    splashScreen: SplashScreen,
-    dbManagementService: DBManagementService, 
+    dbManagementService: DBManagementService,
     dbInitializationService: DBInitializationService) {
 
-    platform.ready().then(() => {
-      statusBar.styleDefault();
-      splashScreen.hide();
-      
-      dbManagementService.open().subscribe(() => {
-        dbInitializationService.initialize();
-      });
-    });
+    platform.ready()
+      .then(() => dbManagementService.open()
+        .concat(dbInitializationService.initialize())
+        .subscribe(
+        () => {},
+        e => this.onApplicationError(e),
+        () => this.onApplicationReady()))
+      .catch(e => this.onApplicationError(e));
   }
+
+  private onApplicationError(e: any) {
+    console.log('Application initialization error.');
+    console.log(e);
+  }
+
+  private onApplicationReady() {
+    console.log('Application initialization complete.');
+    this.statusBar.styleDefault();
+    this.splashScreen.hide();
+    this.appService.emit();
+  }
+
 }

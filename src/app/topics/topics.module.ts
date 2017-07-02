@@ -7,7 +7,7 @@ import { TopicListComponent } from './topic-list/topic-list.component';
 import { TopicEditorComponent } from './topic-editor/topic-editor.component';
 
 import { TopicService } from './shared/topic.service';
-import { TopicDAO } from './shared/topic.dao';
+import { TopicDAO } from './topic.dao';
 
 @NgModule({
   imports: [

@@ -14,10 +14,9 @@ export class DBInitializationService {
   /**
    * Initialize tables and data in the database.
    */
-  initialize() {
-    this.initializeTables()
-      .concat(this.initializeTopicsData())
-      .subscribe();
+  initialize(): Observable<any> {
+    return this.initializeTables()
+      .concat(this.initializeTopicsData());
   }
 
   /**

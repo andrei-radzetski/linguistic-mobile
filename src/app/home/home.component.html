@@ -25,13 +25,13 @@
       <button ion-item (click)="openTopics()">
         <ion-icon name="ios-folder-outline" item-start></ion-icon>
         All topics
-        <ion-badge item-end>3</ion-badge>
+        <ion-badge item-end>{{ topicsCount }}</ion-badge>
       </button>
 
       <button ion-item (click)="openWords()">
         <ion-icon name="ios-list-box-outline" item-start></ion-icon>
         All words
-        <ion-badge item-end>9</ion-badge>
+        <ion-badge item-end>{{ wordsCount }}</ion-badge>
       </button>
     </ion-list>
   </ion-card>

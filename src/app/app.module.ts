@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { AppComponent } from './app.component';
+import { AppService } from './app.service';
 
 import { TabsModule } from './tabs/tabs.module';
 import { DBModule } from './db/db.module';
@@ -31,6 +32,7 @@ import { DBInitializationService } from './db/db-initialization.service';
     SplashScreen,
     DBManagementService,
     DBInitializationService,
+    AppService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Topic } from './topic.model';
-import { TopicDAO } from './topic.dao';
+import { TopicDAO } from '../topic.dao';
 
 @Injectable()
 export class TopicService {
@@ -12,5 +12,9 @@ export class TopicService {
   findAll(): Observable<Array<Topic>> {
     return this.dao.findAll();
   } 
+
+  count(): Observable<number> {
+    return this.dao.count();
+  }
 
 }
