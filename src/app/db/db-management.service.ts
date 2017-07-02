@@ -11,7 +11,7 @@ import { SQLQuery } from "./sql-query.model";
 export class DBManagementService {
 
   public static readonly SQL_CONFIG: SQLiteDatabaseConfig = {
-    name: 'linguistic90.db',
+    name: 'linguistic24.db',
     location: 'default'
   }
 
@@ -46,7 +46,7 @@ export class DBManagementService {
    * 
    * @param {SQLQuery[]} queries SQL queries.
    */
-  execute(...queries: SQLQuery[]): Observable<any> {
+  executeSQLs(...queries: SQLQuery[]): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.db.transaction((tx: SQLiteTransaction) => {
 
@@ -66,6 +66,31 @@ export class DBManagementService {
           observer.error(e)
         });
     })
+  }
+  /**
+   * Execute single SQL query.
+   * 
+   * @param {SQLQuery} query SQL query.
+   */
+  executeSQL(query: SQLQuery): Observable<any> {
+    return Observable.create((observer: Observer<any>) => {
+      this.db.executeSql(query.sql, query.values)
+        .then(rs => {
+          this.logSuccessfulExecution(query.sql);
+          observer.next(rs);
+          observer.complete();
+        }).catch(e => {
+          this.logFailureExecution(query.sql, e);
+          observer.error(e);
+        })
+    });
+  }
+
+  count(tableName: string): Observable<number> {
+    return this.executeSQL(new SQLQuery(`SELECT count(*) FROM ${tableName}`))
+      .flatMap((rs: any) => Observable.from(rs.rows))
+      .flatMap((value: any, index: number) => Observable.of(value.item(index)))
+      .flatMap((element: any) => Observable.of(element['count(*)']));
   }
 
   /**

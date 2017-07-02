@@ -8,12 +8,6 @@ import { Topic } from "../topics/shared/topic.model";
 import { Word } from "../words/shared/word.model";
 
 /*
-  //todo
-  
-  tx.executeSql('INSERT INTO TOPICS (NAME) VALUES (?)', ['Bla1'], null, e => this.error('TOPICS', e));
-  tx.executeSql('INSERT INTO TOPICS (NAME) VALUES (?)', ['Bla2'], null, e => this.error('TOPICS', e));
-  tx.executeSql('INSERT INTO TOPICS (NAME) VALUES (?)', ['Bla3'], null, e => this.error('TOPICS', e));
-
   this.dbService.db.executeSql('SELECT count(*) FROM TOPICS', [])
     .then(rs => {
       if (rs.rows.length > 0) {
@@ -42,19 +36,27 @@ export class DBInitializationService {
    * Initialize tables and data in the database.
    */
   initialize() {
-    this.createTables().subscribe();
+    this.initializeTables()
+      .concat(this.initializeTopicsData())
+      .subscribe();
   }
 
   /**
    * Create empty tables if not exists.
    */
-  private createTables(): Observable<any> {
+  private initializeTables(): Observable<any> {
     let topicsSQL = new SQLQuery(this.buildCreateTableSQL(Topic.METADATA));
     let wordsSQL = new SQLQuery(this.buildCreateTableSQL(Word.METADATA));
 
-    return this.dbManagementService.execute(topicsSQL, wordsSQL);
+    return this.dbManagementService.executeSQLs(topicsSQL, wordsSQL);
   }
-  
+
+  private initializeTopicsData(): Observable<any> {
+    let sql = new SQLQuery('INSERT INTO TOPICS (NAME) VALUES (?)', ['Test topic']);
+
+    return this.dbManagementService.executeSQL(sql);
+  }
+
   /**
    *  Build "CREATE TABLE IF NOT EXISTS" SQL query.  
    */
