@@ -1,8 +1,9 @@
 import { Topic } from '../../topics/shared/topic.model';
-import { TableMetadata } from "../../db/table-metadata.model";
-import { Entity } from "../../db/entity.model";
+import { TableMetadata } from '../../db/table-metadata.model';
+import { Entity } from '../../shared/entity.model';
+import { DBConvertible } from '../../db/db-convertible';
 
-export class Word extends Entity {
+export class Word extends Entity implements DBConvertible {
 
   public static readonly METADATA = new TableMetadata('WORDS', [
     'ID integer primary key',
@@ -60,6 +61,10 @@ export class Word extends Entity {
     }
 
     return this.synonyms.push(...synonyms);
+  }
+
+  convertDB(raw: any): Word {
+    return new Word();
   }
 
 }

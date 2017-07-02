@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of'
 
 import { Topic } from './topic.model';
-
-import { AppMock } from '../../app.mock';
+import { TopicDAO } from './topic.dao';
 
 @Injectable()
 export class TopicService {
 
+  constructor(private dao: TopicDAO) { }
+
   findAll(): Observable<Array<Topic>> {
-    return Observable.of(AppMock.getTopics());
+    return this.dao.findAll();
   } 
 
 }
