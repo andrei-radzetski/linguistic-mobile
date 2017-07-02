@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, LoadingController } from 'ionic-angular';
+import { Observable } from "rxjs";
 
+import { AbstractLoadableComponent } from '../shared/abstract-loadable.component';
 import { TabsComponent } from '../tabs/tabs.component'
 import { WordEditorComponent } from '../words/word-editor/word-editor.component'
 import { WordService } from '../words/shared/word.service';
@@ -11,7 +13,7 @@ import { AppService } from '../app.service';
   selector: 'lgsc-home',
   templateUrl: 'home.component.html'
 })
-export class HomeComponent {
+export class HomeComponent extends AbstractLoadableComponent {
 
   topicsCount: number = 0;
   wordsCount: number = 0;
@@ -21,18 +23,21 @@ export class HomeComponent {
     private modalCtrl: ModalController,
     private wordService: WordService,
     private topicService: TopicService,
+    loadingController: LoadingController,
     appService: AppService) {
 
+    super(loadingController);
     appService.ready().subscribe(() => this.init());
   }
 
-  init() {
-    this.topicService.count()
+  load(): Observable<any> {
+    return this.topicService.count()
       .flatMap((value: number) => {
         this.topicsCount = value;
         return this.wordService.count();
-      }).subscribe((value: number) => {
+      }).flatMap((value: number) => {
         this.wordsCount = value;
+        return Observable.empty();
       });
   }
 

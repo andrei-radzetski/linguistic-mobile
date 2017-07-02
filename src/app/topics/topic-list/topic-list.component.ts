@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, LoadingController } from 'ionic-angular';
+import { Observable } from "rxjs";
 
+import { AbstractLoadableComponent } from '../../shared/abstract-loadable.component';
 import { TopicEditorComponent } from '../topic-editor/topic-editor.component';
 import { WordListComponent } from '../../words/word-list/word-list.component';
 
@@ -11,21 +13,29 @@ import { TopicService } from '../shared/topic.service';
   selector: 'lgsc-topic-list',
   templateUrl: 'topic-list.component.html'
 })
-export class TopicListComponent implements OnInit {
+export class TopicListComponent extends AbstractLoadableComponent implements OnInit {
 
   private topics: Array<Topic>;
 
   constructor(
     private navCtrl: NavController,
     private modalCtrl: ModalController,
-    private topicService: TopicService) {
+    private topicService: TopicService,
+    loadingController: LoadingController) {
 
+    super(loadingController);
   }
 
   ngOnInit() {
-    this.topicService.findAll().subscribe((topics: Array<Topic>) => {
-      this.topics = topics;
-    })
+    this.init();
+  }
+
+  load(): Observable<any> {
+    return this.topicService.findAll()
+      .flatMap((topics: Array<Topic>) => {
+        this.topics = topics;
+        return Observable.empty()
+      })
   }
 
   openEditor() {

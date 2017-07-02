@@ -15,6 +15,7 @@ export class Topic extends Entity implements DBConvertible {
   constructor(name?: string) {
     super();
     this.name = name;
+    this.wordsNumber = 0;
   }
 
   getWordsNumberTemplate(): string {
