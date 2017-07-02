@@ -7,15 +7,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { AppComponent } from './app.component';
 
 import { TabsModule } from './tabs/tabs.module';
-import { DbModule } from './db/db.module';
+import { DBModule } from './db/db.module';
 
-import { DbService } from './db/db.service';
-import { DbInitializationService } from './db/db-initialization.service';
+import { DBManagementService } from './db/db-management.service';
+import { DBInitializationService } from './db/db-initialization.service';
 
 @NgModule({
   imports: [
     TabsModule,
-    DbModule,
+    DBModule,
     BrowserModule,
     IonicModule.forRoot(AppComponent),
   ],
@@ -29,8 +29,8 @@ import { DbInitializationService } from './db/db-initialization.service';
   providers: [
     StatusBar,
     SplashScreen,
-    DbService,
-    DbInitializationService,
+    DBManagementService,
+    DBInitializationService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

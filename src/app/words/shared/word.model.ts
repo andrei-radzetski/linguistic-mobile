@@ -1,11 +1,14 @@
 import { Topic } from '../../topics/shared/topic.model';
+import { TableMetadata } from "../../db/table-metadata.model";
+import { Entity } from "../../db/entity.model";
 
-export class Word {
+export class Word extends Entity {
 
-  public static readonly TABLE_NAME = 'WORDS';
-  public static readonly TABLE_DECLARATION = 'ID integer primary key, VALUE text';
+  public static readonly METADATA = new TableMetadata('WORDS', [
+    'ID integer primary key',
+    'VALUE text'
+  ]);
 
-  public id: number;
   public value: string;
   public language: string;
   public translation: Word;
@@ -13,6 +16,7 @@ export class Word {
   public synonyms: Array<Word>;
 
   constructor(value?: string) {
+    super();
     this.value = value;
     this.topics = new Array<Topic>();
     this.synonyms = new Array<Word>();

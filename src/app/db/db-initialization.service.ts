@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
-import { SQLiteTransaction } from '@ionic-native/sqlite';
+import { Observable } from 'rxjs';
 
-import { DbService } from "./db.service";
+import { DBManagementService } from "./db-management.service";
+import { SQLQuery } from "./sql-query.model";
+import { TableMetadata } from "./table-metadata.model";
 import { Topic } from "../topics/shared/topic.model";
 import { Word } from "../words/shared/word.model";
 
@@ -33,9 +34,9 @@ import { Word } from "../words/shared/word.model";
     }).catch(e => console.log(e));
 */
 @Injectable()
-export class DbInitializationService {
+export class DBInitializationService {
 
-  constructor(private dbService: DbService) { }
+  constructor(private dbManagementService: DBManagementService) { }
 
   /**
    * Initialize tables and data in the database.
@@ -48,41 +49,17 @@ export class DbInitializationService {
    * Create empty tables if not exists.
    */
   private createTables(): Observable<any> {
-    return Observable.create((observer: Observer<any>) => {
-      this.dbService.db.transaction((tx: SQLiteTransaction) => {
-        this.executeSql(tx, this.buildCreateTableSQL(Topic.TABLE_NAME, Topic.TABLE_DECLARATION));
-        this.executeSql(tx, this.buildCreateTableSQL(Word.TABLE_NAME, Word.TABLE_DECLARATION));
-      });
-    });
-  }
+    let topicsSQL = new SQLQuery(this.buildCreateTableSQL(Topic.METADATA));
+    let wordsSQL = new SQLQuery(this.buildCreateTableSQL(Word.METADATA));
 
-  /**
-   * Execute sql query in the transaction. 
-   */
-  private executeSql(tx: SQLiteTransaction, sql: string, values?: any) {
-    tx.executeSql(sql, values, () => this.success(sql), e => this.error(sql, e))
+    return this.dbManagementService.execute(topicsSQL, wordsSQL);
   }
-
+  
   /**
-   * Successful execution sql query callback.
+   *  Build "CREATE TABLE IF NOT EXISTS" SQL query.  
    */
-  private success(sql: string) {
-    console.log(`SQL was executed: "${sql}"`);
-  }
-
-  /**
-   * Failure execution sql query callback.
-   */
-  private error(sql: string, e: any) {
-    console.log(`SQL was NOT executed: "${sql}"`);
-    console.log(e)
-  }
-
-  /**
-   *  Build "CREATE TABLE IF NOT EXISTS" sql query.  
-   */
-  private buildCreateTableSQL(name: string, declaration: string): string {
-    return `CREATE TABLE IF NOT EXISTS ${name} (${declaration})`;
+  private buildCreateTableSQL(metadata: TableMetadata): string {
+    return `CREATE TABLE IF NOT EXISTS ${metadata.name} (${metadata.declaration})`;
   }
 
 }

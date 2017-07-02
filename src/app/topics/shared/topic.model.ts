@@ -1,13 +1,18 @@
-export class Topic {
+import { TableMetadata } from "../../db/table-metadata.model";
+import { Entity } from "../../db/entity.model";
 
-  public static readonly TABLE_NAME = 'TOPICS';
-  public static readonly TABLE_DECLARATION = 'ID integer primary key, NAME text';
+export class Topic extends Entity {
 
-  public id: number;
+  public static readonly METADATA = new TableMetadata('TOPICS', [
+    'ID integer primary key',
+    'NAME text'
+  ]);
+
   public name: string;
   public wordsNumber: number;
 
   constructor(name?: string) {
+    super();
     this.name = name;
   }
 

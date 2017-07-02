@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { SQLite } from '@ionic-native/sqlite';
 
-import { DbService } from "./db.service";
+import { DBManagementService } from "./db-management.service";
 
 @NgModule({
   providers: [
     SQLite,
-    DbService
+    DBManagementService
   ]
 })
-export class DbModule { }
+export class DBModule { }
