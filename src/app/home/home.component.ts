@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController, LoadingController } from 'ionic-angular';
 import { Observable } from "rxjs";
 
-import { AbstractLoadableComponent } from '../shared/abstract-loadable.component';
+import { AbstractRefreshableComponent } from '../shared/abstract-refreshable.component';
 import { TabsComponent } from '../tabs/tabs.component'
 import { WordEditorComponent } from '../words/word-editor/word-editor.component'
 import { WordService } from '../words/shared/word.service';
@@ -13,7 +13,7 @@ import { AppService } from '../app.service';
   selector: 'lgsc-home',
   templateUrl: 'home.component.html'
 })
-export class HomeComponent extends AbstractLoadableComponent {
+export class HomeComponent extends AbstractRefreshableComponent {
 
   topicsCount: number = 0;
   wordsCount: number = 0;

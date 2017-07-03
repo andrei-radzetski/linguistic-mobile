@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController, LoadingController } from 'ionic-angular';
 import { Observable } from "rxjs";
 
-import { AbstractLoadableComponent } from '../../shared/abstract-loadable.component';
+import { AbstractRefreshableComponent } from '../../shared/abstract-refreshable.component';
 import { TopicEditorComponent } from '../topic-editor/topic-editor.component';
 import { WordListComponent } from '../../words/word-list/word-list.component';
 
@@ -13,7 +13,7 @@ import { TopicService } from '../shared/topic.service';
   selector: 'lgsc-topic-list',
   templateUrl: 'topic-list.component.html'
 })
-export class TopicListComponent extends AbstractLoadableComponent implements OnInit {
+export class TopicListComponent extends AbstractRefreshableComponent implements OnInit {
 
   private topics: Array<Topic>;
 
