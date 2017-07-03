@@ -29,9 +29,7 @@
     <ion-item>
       <ion-label>Language</ion-label>
       <ion-select interface="action-sheet">
-        <ion-option value="15">15 min</ion-option>
-        <ion-option value="30">30 min</ion-option>
-        <ion-option value="60">60 min</ion-option>
+        <ion-option *ngFor="let lang of langs" value="{{ lang.key }}">{{ lang.name }}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
@@ -60,18 +58,14 @@
     <ion-item>
       <ion-input type="text" placeholder="Input translation" class="input-rigth-border"></ion-input>
       <ion-select interface="action-sheet" placeholder="Language">
-        <ion-option value="15">15 min</ion-option>
-        <ion-option value="30">30 min</ion-option>
-        <ion-option value="60">60 min</ion-option>
+        <ion-option *ngFor="let lang of langs" value="{{ lang.key }}">{{ lang.name }}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item-sliding>
       <ion-item>
         <ion-input type="text" placeholder="Input translation" class="input-rigth-border"></ion-input>
         <ion-select interface="action-sheet" placeholder="Language">
-          <ion-option value="15">15 min</ion-option>
-          <ion-option value="30">30 min</ion-option>
-          <ion-option value="60">60 min</ion-option>
+          <ion-option *ngFor="let lang of langs" value="{{ lang.key }}">{{ lang.name }}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item-options side="right">

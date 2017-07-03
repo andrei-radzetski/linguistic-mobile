@@ -6,6 +6,7 @@ import { WordListComponent } from './word-list/word-list.component';
 import { WordEditorComponent } from './word-editor/word-editor.component';
 import { WordViewerComponent } from './word-viewer/word-viewer.component';
 
+import { LangModule } from "../lang/lang.module";
 import { WordService } from './shared/word.service';
 import { WordDAO } from './words.dao';
 import { AlertService } from '../shared/alert.service';
@@ -13,6 +14,7 @@ import { AlertService } from '../shared/alert.service';
 @NgModule({
   imports: [
     CommonModule,
+    LangModule,
     IonicModule
   ],
   declarations: [

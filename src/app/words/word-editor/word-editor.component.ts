@@ -1,23 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ViewController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs';
 
 import { Word } from "../shared/word.model";
+import { Lang } from "../../lang/shared/lang.model";
 import { AbstractEditorComponent } from "../../shared/abstract-editor.component";
 import { AlertService } from '../../shared/alert.service';
+import { LangService } from '../../lang/shared/lang.service';
 
 @Component({
   selector: 'lgsc-word-editor',
   templateUrl: 'word-editor.component.html'
 })
-export class WordEditorComponent extends AbstractEditorComponent<Word> {
+export class WordEditorComponent extends AbstractEditorComponent<Word> implements OnInit {
+
+  langs: Array<Lang> = [];
 
   constructor(
     viewCtrl: ViewController, 
     params: NavParams, 
-    private alertService: AlertService) { 
+    private alertService: AlertService,
+    private langService: LangService) { 
 
       super(viewCtrl, params, { create: (): Word => new Word() });
+  }
+
+  ngOnInit() {
+    // todo loading
+    this.langService.findAll().subscribe((values: Lang[]) => {
+      this.langs = values;
+      console.log(values);
+    })
   }
 
   validate(): Observable<any> {
