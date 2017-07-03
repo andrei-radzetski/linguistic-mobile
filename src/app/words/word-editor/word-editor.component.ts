@@ -17,5 +17,13 @@ export class WordEditorComponent extends AbstractEditorComponent<Word> {
   validate(): boolean {
     return super.validate();
   }
+
+  addSynonym() {
+    
+  }
+
+  addTranslation() {
+    
+  }
   
 }

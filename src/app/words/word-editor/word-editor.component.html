@@ -16,5 +16,92 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="outer-content">
+
+  <!--Word (synonyms)-->
+  <ion-list>
+    <ion-list-header>
+      Word (synonyms)
+      <button item-end ion-button clear icon-only color="teal" (click)="addSynonym()">
+        <ion-icon name='ios-add-circle-outline'></ion-icon>
+      </button>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Language</ion-label>
+      <ion-select interface="action-sheet">
+        <ion-option value="15">15 min</ion-option>
+        <ion-option value="30">30 min</ion-option>
+        <ion-option value="60">60 min</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Input word"></ion-input>
+    </ion-item>
+    <ion-item-sliding>
+      <ion-item>
+        <ion-input type="text" placeholder="Input synonym"></ion-input>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger">
+        <ion-icon name="ios-remove-circle-outline"></ion-icon>
+      </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!--Translations-->
+  <ion-list>
+    <ion-list-header>
+      Translations
+      <button item-end ion-button clear icon-only color="teal" (click)="addTranslation()">
+        <ion-icon name='ios-add-circle-outline'></ion-icon>
+      </button>
+    </ion-list-header>
+    <ion-item>
+      <ion-input type="text" placeholder="Input translation" class="input-rigth-border"></ion-input>
+      <ion-select interface="action-sheet" placeholder="Language">
+        <ion-option value="15">15 min</ion-option>
+        <ion-option value="30">30 min</ion-option>
+        <ion-option value="60">60 min</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item-sliding>
+      <ion-item>
+        <ion-input type="text" placeholder="Input translation" class="input-rigth-border"></ion-input>
+        <ion-select interface="action-sheet" placeholder="Language">
+          <ion-option value="15">15 min</ion-option>
+          <ion-option value="30">30 min</ion-option>
+          <ion-option value="60">60 min</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger">
+        <ion-icon name="ios-remove-circle-outline"></ion-icon>
+      </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!--Topics-->
+  <ion-list>
+    <ion-list-header>Topics </ion-list-header>
+    <ion-item>
+      <ion-select class="lgsc-full-select" multiple="true" cancelText="Cancel" okText="Ok" placeholder="Select topics">
+        <ion-option value="1" selected="true">Topic 1</ion-option>
+        <ion-option value="2">Topic 2</ion-option>
+        <ion-option value="3">Topic 3</ion-option>
+        <ion-option value="4" selected="true">Topic 4</ion-option>
+        <ion-option value="5">Topic 5</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <!--Comments-->
+  <ion-list>
+    <ion-list-header>Comments</ion-list-header>
+    <ion-item>
+      <ion-textarea rows="3" placeholder="Input comments"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

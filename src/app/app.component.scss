@@ -22,3 +22,12 @@
 .fourth-margin-bottom {
   margin-bottom: $content-margin / 4;
 }
+
+.input-rigth-border {
+  border-right: 1px solid $list-border-color;
+}
+
+.lgsc-full-select{
+  max-width: 100%;
+  width: 100%;
+}
