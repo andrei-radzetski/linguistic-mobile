@@ -11,7 +11,7 @@ import { SQLQuery } from "./sql-query.model";
 export class DBManagementService {
 
   public static readonly SQL_CONFIG: SQLiteDatabaseConfig = {
-    name: 'linguistic37.db',
+    name: 'linguistic39.db',
     location: 'default'
   }
 
@@ -91,15 +91,20 @@ export class DBManagementService {
    * 
    * @param {SQLQuery} query SQL query.
    */
-  select(query: SQLQuery): Observable<any> {
+  select(query: SQLQuery): Observable<Array<any>> {
     let rows = null;
     return this.executeSQL(query)
       .flatMap((rs: any) => Observable.of(rs.rows))
       .flatMap((_rows: any) => {
         rows = _rows;
-        return rows.length > 0
-          ? Observable.range(0, rows.length).flatMap((index: number) => Observable.of(rows.item(index)))
-          : Observable.of([])
+        if (rows.length > 0) {
+          return Observable
+            .range(0, rows.length)
+            .flatMap((index: number) => Observable.of(rows.item(index)))
+            .toArray();
+        } else {
+          return Observable.of([]);
+        }
       });
   }
 
@@ -108,7 +113,7 @@ export class DBManagementService {
    *
    * @param {string} tableName Table name.
    */
-  all(tableName: string): Observable<any> {
+  all(tableName: string): Observable<Array<any>> {
     return this.select(SQLQuery.selectAll(tableName));
   }
 

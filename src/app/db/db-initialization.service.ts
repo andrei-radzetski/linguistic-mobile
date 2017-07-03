@@ -5,6 +5,7 @@ import { DBManagementService } from "./db-management.service";
 import { SQLQuery } from "./sql-query.model";
 import { Topic } from "../topics/shared/topic.model";
 import { Word } from "../words/shared/word.model";
+import { Lang } from "../lang/shared/lang.model";
 
 @Injectable()
 export class DBInitializationService {
@@ -16,7 +17,8 @@ export class DBInitializationService {
    */
   initialize(): Observable<any> {
     return this.initializeTables()
-      .concat(this.initializeTopicsData());
+      .concat(this.initializeTopicsData())
+      .concat(this.initializeLangsData());
   }
 
   /**
@@ -25,16 +27,30 @@ export class DBInitializationService {
   private initializeTables(): Observable<any> {
     let topicsSQL = SQLQuery.createTable(Topic.METADATA.name, Topic.METADATA.declaration);
     let wordsSQL = SQLQuery.createTable(Word.METADATA.name, Word.METADATA.declaration);
+    let langsSQL = SQLQuery.createTable(Lang.METADATA.name, Lang.METADATA.declaration);
 
-    return this.dbManagementService.executeSQLs(topicsSQL, wordsSQL);
+    return this.dbManagementService.executeSQLs(topicsSQL, wordsSQL, langsSQL);
   }
 
   private initializeTopicsData(): Observable<any> {
-    // todo remove
-    let sql1 = SQLQuery.insertInto(Topic.METADATA.name, ['NAME'], ['Test topic 1']);
-    let sql2 = SQLQuery.insertInto(Topic.METADATA.name, ['NAME'], ['Test topic 2']);
+    // let sql1 = SQLQuery.insertInto(Topic.METADATA.name, ['NAME'], ['Test topic 1']);
+    // let sql2 = SQLQuery.insertInto(Topic.METADATA.name, ['NAME'], ['Test topic 2']);
+    // return this.dbManagementService.executeSQLs(sql1, sql2);
+    return Observable.empty();
+  }
 
-    return this.dbManagementService.executeSQLs(sql1, sql2);
+  private initializeLangsData(): Observable<any> {
+    let en = SQLQuery.insertInto(Lang.METADATA.name, ['KEY', 'NAME'], ['en', 'English']);
+    let ru = SQLQuery.insertInto(Lang.METADATA.name, ['KEY', 'NAME'], ['ru', 'Русский']);
+    let pl = SQLQuery.insertInto(Lang.METADATA.name, ['KEY', 'NAME'], ['pl', 'Polski']);
+
+    return this.dbManagementService
+      .count(Lang.METADATA.name)
+      .flatMap((value: number) => {
+        return value > 0
+          ? Observable.empty()
+          : this.dbManagementService.executeSQLs(en, ru, pl);
+      });
   }
 
 }

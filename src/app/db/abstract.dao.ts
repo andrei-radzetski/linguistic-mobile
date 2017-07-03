@@ -20,7 +20,8 @@ export abstract class AbstractDAO<T extends DBConvertible> {
 
   findAll(): Observable<Array<T>> {
     return this.db.all(this.metadata.name)
-      .flatMap((raw: any) => Observable.of(this.creator.create().convertDB(raw)))
+      .flatMap((data: any[]) => Observable.from(data))
+      .flatMap((element: any) => Observable.of(this.creator.create().convertDB(element)))
       .toArray();
   }
 
