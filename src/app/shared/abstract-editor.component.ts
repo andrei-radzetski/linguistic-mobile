@@ -1,4 +1,5 @@
 import { ViewController, NavParams } from 'ionic-angular';
+import { Observable } from 'rxjs';
 
 import { ObjectCreator } from './object-creator';
 
@@ -24,6 +25,15 @@ export abstract class AbstractEditorComponent<T> {
   }
 
   /**
+   * Validate object after done was called.
+   */
+  abstract validate(): Observable<any>;
+
+  abstract save(): Observable<any>;
+
+  abstract onError(err: Error);
+
+  /**
    * Cancel the current dialog. Calls dismiss with {@link AbstractEditorComponent#CANCEL_EVENT_ID}.
    */
   protected cancel() {
@@ -34,16 +44,12 @@ export abstract class AbstractEditorComponent<T> {
    * Done the current dialog. Validates and calls dismiss with {@link AbstractEditorComponent#DONE_EVENT_ID}.
    */
   protected done() {
-    if (this.validate()) {
-      this.viewCtrl.dismiss(this.object, AbstractEditorComponent.DONE_EVENT_ID);
-    }
-  }
-
-  /**
-   * Validate object after done was called.
-   */
-  protected validate(): boolean {
-    return true;
+    Observable
+      .concat(this.validate())
+      .concat(this.save())
+      .subscribe(() => { },
+      e => this.onError(e),
+      () => this.viewCtrl.dismiss(this.object, AbstractEditorComponent.DONE_EVENT_ID));
   }
 
 }

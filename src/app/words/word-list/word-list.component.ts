@@ -41,8 +41,7 @@ export class WordListComponent implements OnInit {
   }
 
   openEditor() {
-    let editor = this.modalCtrl.create(WordEditorComponent);
-    editor.present();
+    this.modalCtrl.create(WordEditorComponent).present();
   }
 
   openViewer(word: Word) {

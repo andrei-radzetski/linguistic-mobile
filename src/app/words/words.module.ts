@@ -8,6 +8,7 @@ import { WordViewerComponent } from './word-viewer/word-viewer.component';
 
 import { WordService } from './shared/word.service';
 import { WordDAO } from './words.dao';
+import { AlertService } from '../shared/alert.service';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { WordDAO } from './words.dao';
   ],
   providers: [
     WordService,
-    WordDAO
+    WordDAO,
+    AlertService
   ],
   exports: [
     WordListComponent

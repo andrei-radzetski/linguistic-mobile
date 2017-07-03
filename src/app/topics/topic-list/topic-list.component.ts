@@ -39,8 +39,7 @@ export class TopicListComponent extends AbstractRefreshableComponent implements 
   }
 
   openEditor() {
-    let editor = this.modalCtrl.create(TopicEditorComponent);
-    editor.present();
+    this.modalCtrl.create(TopicEditorComponent).present();
   }
 
   seeWords(topic: Topic) {

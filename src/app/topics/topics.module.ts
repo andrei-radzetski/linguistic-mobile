@@ -8,6 +8,7 @@ import { TopicEditorComponent } from './topic-editor/topic-editor.component';
 
 import { TopicService } from './shared/topic.service';
 import { TopicDAO } from './topic.dao';
+import { AlertService } from '../shared/alert.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { TopicDAO } from './topic.dao';
   ],
   providers: [
     TopicService,
-    TopicDAO
+    TopicDAO,
+    AlertService
   ],
   exports: [
     TopicListComponent
