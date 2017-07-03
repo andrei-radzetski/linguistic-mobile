@@ -38,7 +38,8 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  teal:     #009688
 );
 
 
@@ -88,3 +89,5 @@ $colors: (
 @import "noto-sans";
 
 $loading-ios-background: transparent;
+
+$tabs-ios-tab-icon-color-active: color($colors, teal);
