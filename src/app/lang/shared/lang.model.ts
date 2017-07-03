@@ -8,7 +8,7 @@ export class Lang extends Entity implements DBConvertible {
     'ID integer primary key',
     'KEY text',
     'NAME text',
-    'CONSTRAINT key_unique UNIQUE (KEY)'
+    'CONSTRAINT lang_key_unique UNIQUE (KEY)'
   ]);
 
   public key: string;

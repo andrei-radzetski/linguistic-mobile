@@ -15,6 +15,7 @@ export class TopicEditorComponent extends AbstractEditorComponent<Topic> {
   }
 
   validate(): boolean {
+    console.log(this.object);
     return super.validate();
   }
 
