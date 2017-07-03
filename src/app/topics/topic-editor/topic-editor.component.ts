@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ViewController, NavParams } from 'ionic-angular';
 
 import { Topic } from "../shared/topic.model";
-import { AbstractEditorComponent } from "../../shared/editor/abstract-editor.component";
+import { AbstractEditorComponent } from "../../shared/abstract-editor.component";
 import { TopicService } from '../shared/topic.service';
 
 @Component({

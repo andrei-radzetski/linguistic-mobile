@@ -1,6 +1,6 @@
 import { ViewController, NavParams } from 'ionic-angular';
 
-import { ObjectCreator } from '../object-creator';
+import { ObjectCreator } from './object-creator';
 
 /**
  * Abstract object editor.
