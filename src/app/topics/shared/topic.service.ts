@@ -11,6 +11,10 @@ export class TopicService {
 
   findAll(): Observable<Array<Topic>> {
     return this.dao.findAll();
+  }
+
+  save(entity: Topic): Observable<Topic> {
+    return this.dao.save(entity);
   } 
 
   count(): Observable<number> {

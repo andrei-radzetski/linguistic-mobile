@@ -2,7 +2,7 @@ export class TableMetadata {
 
   private fields: string[] = new Array<string>();
 
-  constructor(public name: string, fields: string[]) {
+  constructor(public name: string, fields: string[], public order: string[]) {
     this.fields = fields;
   }
 

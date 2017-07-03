@@ -6,14 +6,14 @@ export class Topic extends Entity implements DBConvertible {
 
   public static readonly METADATA = new TableMetadata('TOPICS', [
     'ID integer primary key',
-    'KEY text',
     'NAME text',
     'COMMENT text',
-    'CONSTRAINT topic_key_unique UNIQUE (KEY)',
     'CONSTRAINT topic_name_unique UNIQUE (NAME)',
+  ], [
+    'NAME', 
+    'COMMENT'
   ]);
 
-  public key: string;
   public name: string;
   public comment: string;
   // calculate
@@ -32,7 +32,7 @@ export class Topic extends Entity implements DBConvertible {
   convertDB(raw: any): Topic {
     let result = new Topic();
     result.id = raw.ID;
-    result.key = raw.KEY;
+    result.name = raw.NAME;
     result.comment = raw.COMMENT;
 
     return result

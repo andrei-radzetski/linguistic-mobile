@@ -8,6 +8,8 @@ export class Word extends Entity implements DBConvertible {
   public static readonly METADATA = new TableMetadata('WORDS', [
     'ID integer primary key',
     'VALUE text'
+  ], [
+    'VALUE'
   ]);
 
   public value: string;

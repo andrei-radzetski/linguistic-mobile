@@ -11,4 +11,9 @@ export class WordDAO extends AbstractDAO<Word> {
     super(db, Word.METADATA, { create: (): Word => new Word() });
   }
 
+  mapValues(entity: Word): Array<string> {
+    return [
+      entity.value
+    ];
+  }
 }

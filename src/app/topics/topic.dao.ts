@@ -11,4 +11,11 @@ export class TopicDAO extends AbstractDAO<Topic> {
     super(db, Topic.METADATA, { create: (): Topic => new Topic() });
   }
 
+  mapValues(entity: Topic): Array<string> {
+    return [
+      entity.name,
+      entity.comment
+    ];
+  }
+
 }

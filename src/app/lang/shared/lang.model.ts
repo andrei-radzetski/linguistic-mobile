@@ -9,6 +9,9 @@ export class Lang extends Entity implements DBConvertible {
     'KEY text',
     'NAME text',
     'CONSTRAINT lang_key_unique UNIQUE (KEY)'
+  ], [
+    'KEY', 
+    'NAME'
   ]);
 
   public key: string;
@@ -20,7 +23,7 @@ export class Lang extends Entity implements DBConvertible {
     result.key = raw.KEY;
     result.name = raw.NAME;
 
-    return result
+    return result;
   }
 
 }

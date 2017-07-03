@@ -40,9 +40,9 @@ export class DBInitializationService {
   }
 
   private initializeLangsData(): Observable<any> {
-    let en = SQLQuery.insertInto(Lang.METADATA.name, ['KEY', 'NAME'], ['en', 'English']);
-    let ru = SQLQuery.insertInto(Lang.METADATA.name, ['KEY', 'NAME'], ['ru', 'Русский']);
-    let pl = SQLQuery.insertInto(Lang.METADATA.name, ['KEY', 'NAME'], ['pl', 'Polski']);
+    let en = SQLQuery.insertInto(Lang.METADATA.name, Lang.METADATA.order, ['en', 'English']);
+    let ru = SQLQuery.insertInto(Lang.METADATA.name, Lang.METADATA.order, ['ru', 'Русский']);
+    let pl = SQLQuery.insertInto(Lang.METADATA.name, Lang.METADATA.order, ['pl', 'Polski']);
 
     return this.dbManagementService
       .count(Lang.METADATA.name)
