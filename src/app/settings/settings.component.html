@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Settings
+      {{ 'settings.title' | translate }}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,18 +9,18 @@
 <ion-content class="outer-content">
   <ion-list>
     <ion-list-header>
-      Synchronization
+      {{ 'settings.section.sync.title' | translate }}
       <button item-end ion-button outline icon-start color="teal" (click)="sync()">
         <ion-icon name='ios-sync-outline'></ion-icon>
-        Sync
+        {{ 'button.sync' | translate }}
       </button>
     </ion-list-header>
     <ion-item>
-      <ion-label>Auto</ion-label>
+      <ion-label>{{ 'settings.section.sync.auto' | translate }}</ion-label>
       <ion-toggle [(ngModel)]="autoSync" color="secondary"></ion-toggle>
     </ion-item>
     <ion-item>
-      <ion-label>Every</ion-label>
+      <ion-label>{{ 'settings.section.sync.every' | translate }}</ion-label>
       <ion-select [disabled]="!autoSync" interface="action-sheet" [(ngModel)]="every">
         <ion-option value="15">15 min</ion-option>
         <ion-option value="30">30 min</ion-option>
@@ -28,7 +28,7 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Last sync</ion-label>
+      <ion-label>{{ 'settings.section.sync.last' | translate }}</ion-label>
       <ion-datetime displayFormat="YYYY.MM.DD HH:mm" [ngModel]="syncDate"></ion-datetime>
     </ion-item>
   </ion-list>

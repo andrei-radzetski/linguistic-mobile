@@ -2,6 +2,12 @@
   "app.title": "Linguistic",
   "app.welcome": "Приветствуем Вас в Linguistic!",
 
+  "button.done": "Готово",
+  "button.cancel": "Отмена",
+  "button.edit": "Изменить",
+  "button.remove": "Удалить",
+  "button.sync": "Синхронизировать",
+
   "home.title": "Главная",
   "home.card.start-learning": "Начать обучение",
   "home.card.add-new-word": "Добавить новое слово",
@@ -12,5 +18,9 @@
 
   "topics.title": "Категории",
 
-  "settings.title": "Настройки"
+  "settings.title": "Настройки",
+  "settings.section.sync.title": "Синхронизация",
+  "settings.section.sync.auto": "Авто",
+  "settings.section.sync.every": "Каждые",
+  "settings.section.sync.last": "Последняя"
 }

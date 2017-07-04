@@ -27,7 +27,7 @@ export class AppComponent {
     dbInitializationService: DBInitializationService,
     translateService: TranslateService) {
 
-    translateService.setDefaultLang('ru');
+    translateService.setDefaultLang('en');
 
     platform.ready()
       .then(() => dbManagementService.open()

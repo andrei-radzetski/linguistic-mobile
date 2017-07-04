@@ -1,6 +1,12 @@
 {
   "app.title": "Linguistic",
   "app.welcome": "Welcome to Linguistic!",
+  
+  "button.done": "Done",
+  "button.cancel": "Cancel",
+  "button.edit": "Edit",
+  "button.remove": "Remove",
+  "button.sync": "Sync",
 
   "home.title": "Home",
   "home.card.start-learning": "Start learning",
@@ -12,5 +18,9 @@
 
   "topics.title": "Topic",
 
-  "settings.title": "Settings"
+  "settings.title": "Settings",
+  "settings.section.sync.title": "Synchronization",
+  "settings.section.sync.auto": "Auto",
+  "settings.section.sync.every": "Every",
+  "settings.section.sync.last": "Last sync"
 }
