@@ -11,7 +11,7 @@ import { SQLQuery } from "./sql-query.model";
 export class DBManagementService {
 
   public static readonly SQL_CONFIG: SQLiteDatabaseConfig = {
-    name: 'linguistic202.db',
+    name: 'linguistic204.db',
     location: 'default'
   }
 
@@ -104,6 +104,23 @@ export class DBManagementService {
             .toArray();
         } else {
           return Observable.of([]);
+        }
+      });
+  }
+
+  /**
+   * Execute SQL query and get first result.
+   * 
+   * @param {SQLQuery} query SQL query.
+   */
+  selectOne(query: SQLQuery): Observable<any> {
+    return this.executeSQL(query)
+      .flatMap((rs: any) => Observable.of(rs.rows))
+      .flatMap((rows: any) => {
+        if (rows.length > 0) {
+          return Observable.of(rows.item(0))
+        } else {
+          return Observable.of(null);
         }
       });
   }

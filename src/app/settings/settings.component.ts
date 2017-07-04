@@ -1,51 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LoadingController, Loading } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
+import { Observable } from 'rxjs';
 
 import { Lang } from '../lang/shared/lang.model';
+import { Settings } from './shared/settings.model';
 import { LangService } from '../lang/shared/lang.service';
+import { SettingsService } from './shared/settings.service';
 
 @Component({
   selector: 'lgsc-settings',
   templateUrl: 'settings.component.html'
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent {
 
-  autoSync: boolean = false;
-  syncDate: string;
-  every: string;
-  lang: Lang;
-  langs: Array<Lang> = [];
-  private loading: Loading;
+  langs: Lang[];
+  settings: Settings;
 
   constructor(
-    private langService: LangService, 
+    private langService: LangService,
     private translateService: TranslateService,
-    loadingController: LoadingController) {
+    private settingsService: SettingsService,
+    private loadingController: LoadingController) {
 
-    this.updareSyncDate();
-    this.loading = loadingController.create();
+    this.settings = new Settings();
+    this.langs = [];
   }
 
-  ngOnInit() {
-    this.loading.present();
-    this.langService.getTechnical().subscribe(
-      (value: Lang[]) => this.langs = value,
-      () => this.loading.dismiss(),
-      () => this.loading.dismiss());
+  ionViewDidEnter() {
+    let loading = this.loadingController.create();
+    loading.present();
+    this.load().subscribe(
+      () => { },
+      () => loading.dismiss(),
+      () => loading.dismiss())
   }
 
   sync() {
     this.updareSyncDate();
-    console.log(this.autoSync);
-    console.log(this.syncDate);
-    console.log(this.every);
-    console.log(this.lang);
+    console.log(this.settings);
   }
 
   onLangChange() {
-    if (this.lang) {
-      this.translateService.use(this.lang.key);
+    if (this.settings && this.settings.lang) {
+      this.translateService.use(this.settings.lang.key);
     }
   }
 
@@ -54,7 +52,19 @@ export class SettingsComponent implements OnInit {
   }
 
   private updareSyncDate() {
-    this.syncDate = new Date().toISOString();
+    this.settings.lastSync = new Date().toISOString();
+  }
+
+  private load(): Observable<any> {
+    return this.langService.getTechnical()
+      .flatMap((value: Lang[]) => {
+        this.langs = value;
+        return this.settingsService.getSettings();
+      }).flatMap((value: Settings) => {
+        this.settings = value;
+        this.onLangChange();
+        return Observable.empty();
+      });
   }
 
 }

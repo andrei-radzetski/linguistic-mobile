@@ -9,20 +9,24 @@ export class Lang extends Entity implements DBConvertible, Comparable<Lang> {
     'ID integer primary key',
     'KEY text',
     'NAME text',
+    'TECHNICAL integer DEFAULT 0',
     'CONSTRAINT lang_key_unique UNIQUE (KEY)'
   ], [
     'KEY', 
-    'NAME'
+    'NAME',
+    'TECHNICAL'
   ]);
 
   public key: string;
   public name: string;
+  public technical: boolean;
 
   convertDB(raw: any): Lang {
     let result = new Lang();
     result.id = raw.ID;
     result.key = raw.KEY;
     result.name = raw.NAME;
+    result.technical = raw.TECHNICAL;
 
     return result;
   }

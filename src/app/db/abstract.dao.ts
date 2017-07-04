@@ -11,7 +11,7 @@ export abstract class AbstractDAO<T extends DBConvertible> {
   constructor(
     protected db: DBManagementService,
     protected metadata: TableMetadata,
-    private creator: ObjectCreator<T>) {
+    protected creator: ObjectCreator<T>) {
 
   }
 

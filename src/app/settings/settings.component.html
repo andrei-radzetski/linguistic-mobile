@@ -17,11 +17,11 @@
     </ion-list-header>
     <ion-item>
       <ion-label>{{ 'settings.section.sync.auto' | translate }}</ion-label>
-      <ion-toggle [(ngModel)]="autoSync" color="secondary"></ion-toggle>
+      <ion-toggle [(ngModel)]="settings.auto" color="secondary"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>{{ 'settings.section.sync.every' | translate }}</ion-label>
-      <ion-select [disabled]="!autoSync" interface="action-sheet" [(ngModel)]="every">
+      <ion-select [disabled]="!settings.auto" interface="action-sheet" [(ngModel)]="settings.every">
         <ion-option value="15">15 min</ion-option>
         <ion-option value="30">30 min</ion-option>
         <ion-option value="60">60 min</ion-option>
@@ -29,7 +29,7 @@
     </ion-item>
     <ion-item>
       <ion-label>{{ 'settings.section.sync.last' | translate }}</ion-label>
-      <ion-datetime displayFormat="YYYY.MM.DD HH:mm" [ngModel]="syncDate"></ion-datetime>
+      <ion-datetime displayFormat="YYYY.MM.DD HH:mm" [ngModel]="settings.lastSync"></ion-datetime>
     </ion-item>
   </ion-list>
 
@@ -39,7 +39,7 @@
     </ion-list-header>
     <ion-item>
       <ion-label>{{ 'settings.section.interface.lang' | translate }}</ion-label>
-      <ion-select interface="action-sheet" [(ngModel)]="lang" (ngModelChange)="onLangChange()" [compareWith]="compareLang">
+      <ion-select interface="action-sheet" [(ngModel)]="settings.lang" (ngModelChange)="onLangChange()" [compareWith]="compareLang">
         <ion-option *ngFor="let lang of langs" [value]="lang">{{ lang.name }}</ion-option>
       </ion-select>
     </ion-item>

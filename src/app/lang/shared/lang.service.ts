@@ -18,19 +18,7 @@ export class LangService {
   }
 
   getTechnical(): Observable<Array<Lang>> {
-    let en = new Lang();
-    en.key = "en";
-    en.name = "English";
-
-    let ru = new Lang();
-    ru.key = "ru";
-    ru.name = "Русский";
-
-    let pl = new Lang();
-    pl.key = "pl";
-    pl.name = "Polski";
-
-    return Observable.of([en, ru, pl]);
+    return this.dao.findAll();
   }
 
 }
