@@ -8,7 +8,7 @@ import { WordViewerComponent } from './word-viewer/word-viewer.component';
 
 import { LangModule } from "../lang/lang.module";
 import { WordService } from './shared/word.service';
-import { WordDAO } from './words.dao';
+import { WordDAO } from './word.dao';
 import { AlertService } from '../shared/alert.service';
 
 @NgModule({
@@ -36,4 +36,4 @@ import { AlertService } from '../shared/alert.service';
     WordListComponent
   ]
 })
-export class WordsModule { }
+export class WordModule { }

@@ -3,15 +3,15 @@ import { IonicModule } from 'ionic-angular';
 
 import { HomeComponent } from './home.component';
 
-import { WordsModule } from '../words/words.module';
+import { WordModule } from '../word/word.module';
 import { TopicsModule } from '../topics/topics.module';
-import { WordService } from '../words/shared/word.service';
+import { WordService } from '../word/shared/word.service';
 import { TopicService } from '../topics/shared/topic.service';
 import { AppService } from '../app.service';
 
 @NgModule({
   imports: [
-    WordsModule,
+    WordModule,
     TopicsModule,
     IonicModule
   ],

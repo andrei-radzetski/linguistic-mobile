@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 
 import { AbstractRefreshableComponent } from '../../shared/abstract-refreshable.component';
 import { TopicEditorComponent } from '../topic-editor/topic-editor.component';
-import { WordListComponent } from '../../words/word-list/word-list.component';
+import { WordListComponent } from '../../word/word-list/word-list.component';
 
 import { Topic } from '../shared/topic.model';
 import { TopicService } from '../shared/topic.service';

@@ -4,7 +4,7 @@ import 'rxjs/add/observable/of'
 
 import { WordGroup } from './word-group.model';
 import { Topic } from '../../topics/shared/topic.model';
-import { WordDAO } from '../words.dao';
+import { WordDAO } from '../word.dao';
 
 @Injectable()
 export class WordService {
