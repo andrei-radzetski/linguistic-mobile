@@ -32,4 +32,16 @@
       <ion-datetime displayFormat="YYYY.MM.DD HH:mm" [ngModel]="syncDate"></ion-datetime>
     </ion-item>
   </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      {{ 'settings.section.interface.title' | translate }}
+    </ion-list-header>
+    <ion-item>
+      <ion-label>{{ 'settings.section.interface.lang' | translate }}</ion-label>
+      <ion-select interface="action-sheet" [(ngModel)]="lang" (ngModelChange)="onLangChange()" [compareWith]="compareLang">
+        <ion-option *ngFor="let lang of langs" [value]="lang">{{ lang.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 </ion-content>

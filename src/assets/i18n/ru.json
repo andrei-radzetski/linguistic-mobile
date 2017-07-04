@@ -22,5 +22,7 @@
   "settings.section.sync.title": "Синхронизация",
   "settings.section.sync.auto": "Авто",
   "settings.section.sync.every": "Каждые",
-  "settings.section.sync.last": "Последняя"
+  "settings.section.sync.last": "Последняя",
+  "settings.section.interface.title": "Интерфейс",
+  "settings.section.interface.lang": "Язык"
 }

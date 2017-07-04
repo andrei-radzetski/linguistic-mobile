@@ -22,5 +22,7 @@
   "settings.section.sync.title": "Synchronization",
   "settings.section.sync.auto": "Auto",
   "settings.section.sync.every": "Every",
-  "settings.section.sync.last": "Last sync"
+  "settings.section.sync.last": "Last sync",
+  "settings.section.interface.title": "Interface",
+  "settings.section.interface.lang": "Language"
 }
