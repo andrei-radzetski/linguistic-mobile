@@ -1,4 +1,4 @@
-export class TableMetadata {
+export class SQLTableMetadata {
 
   private fields: string[] = new Array<string>();
 

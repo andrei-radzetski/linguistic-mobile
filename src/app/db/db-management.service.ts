@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject, SQLiteDatabaseConfig, SQLiteTransaction } from '@ionic-native/sqlite';
 import { Observable, Observer } from 'rxjs';
 
-import { SQLQuery } from "./sql-query.model";
+import { SQLQuery } from "../sql/sql.query.model";
 
 /**
  * Database service.
@@ -11,7 +11,7 @@ import { SQLQuery } from "./sql-query.model";
 export class DBManagementService {
 
   public static readonly SQL_CONFIG: SQLiteDatabaseConfig = {
-    name: 'linguistic204.db',
+    name: 'linguistic1000.db',
     location: 'default'
   }
 

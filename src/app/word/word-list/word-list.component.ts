@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams, NavController } from 'ionic-angular';
 
+import { Word } from '../shared/word.model';
+import { WordGroup } from '../shared/word-group.model';
+import { Topic } from '../../topic/shared/topic.model';
+import { WordService } from '../shared/word.service';
 import { WordEditorComponent } from '../word-editor/word-editor.component';
 import { WordViewerComponent } from '../word-viewer/word-viewer.component';
-
-import { WordGroup } from '../shared/word-group.model';
-import { Word } from '../shared/word.model';
-import { Topic } from '../../topic/shared/topic.model';
-
-import { WordService } from '../shared/word.service';
 
 @Component({
   selector: 'lgsc-word-list',
@@ -16,7 +14,7 @@ import { WordService } from '../shared/word.service';
 })
 export class WordListComponent implements OnInit {
 
-  wordGroups: Array<WordGroup>;
+  wordGroups: WordGroup[];
   topic: Topic;
 
   constructor(

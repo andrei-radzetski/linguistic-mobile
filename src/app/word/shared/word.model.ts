@@ -1,11 +1,11 @@
-import { Topic } from '../../topic/shared/topic.model';
-import { TableMetadata } from '../../db/table-metadata.model';
 import { Entity } from '../../shared/entity.model';
-import { DBConvertible } from '../../db/db-convertible';
+import { Topic } from '../../topic/shared/topic.model';
+import { RepositoryConvertible } from '../../repository/repository-convertible';
+import { SQLTableMetadata } from '../../sql/sql.table-metadata.model';
 
-export class Word extends Entity implements DBConvertible {
+export class Word extends Entity implements RepositoryConvertible {
 
-  public static readonly METADATA = new TableMetadata('WORDS', [
+  public static readonly METADATA = new SQLTableMetadata('WORDS', [
     'ID integer primary key',
     'VALUE text'
   ], [
@@ -65,7 +65,7 @@ export class Word extends Entity implements DBConvertible {
     return this.synonyms.push(...synonyms);
   }
 
-  convertDB(raw: any): Word {
+  convertFromRepository(raw: any): Word {
     return new Word();
   }
 

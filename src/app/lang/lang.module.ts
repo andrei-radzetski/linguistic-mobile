@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
 
 import { LangService } from './shared/lang.service';
-import { LangDAO } from './lang.dao';
+import { LangRepository } from './lang.repository';
 
 @NgModule({
   imports: [
@@ -10,7 +10,7 @@ import { LangDAO } from './lang.dao';
   ],
   providers: [
     LangService,
-    LangDAO
+    LangRepository
   ]
 })
 export class LangModule { }

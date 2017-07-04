@@ -3,10 +3,10 @@ import { ViewController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs';
 
 import { Topic } from "../shared/topic.model";
-import { AbstractEditorComponent } from "../../shared/abstract-editor.component";
 import { TopicService } from '../shared/topic.service';
-import { StringUtil } from '../../shared/string-util';
 import { AlertService } from '../../shared/alert.service';
+import { AbstractEditorComponent } from "../../shared/abstract-editor.component";
+import { StringUtil } from '../../shared/string-util';
 
 @Component({
   selector: 'lgsc-topic-editor',

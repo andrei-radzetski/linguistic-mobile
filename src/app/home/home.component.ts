@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { NavController, ModalController, LoadingController } from 'ionic-angular';
 import { Observable } from "rxjs";
 
-import { AbstractRefreshableComponent } from '../shared/abstract-refreshable.component';
 import { TabsComponent } from '../tabs/tabs.component'
+import { AbstractRefreshableComponent } from '../shared/abstract-refreshable.component';
 import { WordEditorComponent } from '../word/word-editor/word-editor.component'
-import { WordService } from '../word/shared/word.service';
-import { TopicService } from '../topic/shared/topic.service';
 import { AppService } from '../app.service';
+import { TopicService } from '../topic/shared/topic.service';
+import { WordService } from '../word/shared/word.service';
 
 @Component({
   selector: 'lgsc-home',
@@ -15,8 +15,8 @@ import { AppService } from '../app.service';
 })
 export class HomeComponent extends AbstractRefreshableComponent {
 
-  topicsCount: number = 0;
-  wordsCount: number = 0;
+  topicsCount: number;
+  wordsCount: number;
 
   constructor(
     private navCtrl: NavController,
@@ -28,6 +28,8 @@ export class HomeComponent extends AbstractRefreshableComponent {
 
     super(loadingController);
     appService.ready().subscribe(() => this.init());
+    this.topicsCount = 0;
+    this.wordsCount = 0;
   }
 
   load(): Observable<any> {

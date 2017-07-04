@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { AbstractDAO } from '../db/abstract.dao';
 import { Settings } from './shared/settings.model';
+import { SQLQuery } from '../sql/sql.query.model';
+import { AbstractRepository } from '../repository/abstract.repository';
 import { DBManagementService } from '../db/db-management.service';
-import { SQLQuery } from '../db/sql-query.model';
 
 @Injectable()
-export class SettingsDAO extends AbstractDAO<Settings> {
+export class SettingsRepository extends AbstractRepository<Settings> {
 
   constructor(db: DBManagementService) {
     super(db, Settings.METADATA, { create: (): Settings => new Settings() });
@@ -26,7 +26,7 @@ export class SettingsDAO extends AbstractDAO<Settings> {
     "LIMIT 1";
 
     return this.db.selectOne(new SQLQuery(sql))
-      .flatMap((element: any) => Observable.of(this.creator.create().convertDB(element)));
+      .flatMap((element: any) => Observable.of(this.creator.create().convertFromRepository(element)));
   }
 
 }

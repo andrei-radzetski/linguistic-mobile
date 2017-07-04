@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { AbstractDAO } from '../db/abstract.dao';
 import { Lang } from './shared/lang.model';
+import { AbstractRepository } from '../repository/abstract.repository';
 import { DBManagementService } from '../db/db-management.service';
 
 @Injectable()
-export class LangDAO extends AbstractDAO<Lang> {
+export class LangRepository extends AbstractRepository<Lang> {
 
   constructor(db: DBManagementService) {
     super(db, Lang.METADATA, { create: (): Lang => new Lang() });

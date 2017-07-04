@@ -1,11 +1,11 @@
-import { TableMetadata } from '../../db/table-metadata.model';
 import { Entity } from '../../shared/entity.model';
-import { DBConvertible } from '../../db/db-convertible';
 import { Lang } from '../../lang/shared/lang.model';
+import { RepositoryConvertible } from '../../repository/repository-convertible';
+import { SQLTableMetadata } from '../../sql/sql.table-metadata.model';
 
-export class Settings extends Entity implements DBConvertible {
+export class Settings extends Entity implements RepositoryConvertible {
 
-  public static readonly METADATA = new TableMetadata('SETTINGS', [
+  public static readonly METADATA = new SQLTableMetadata('SETTINGS', [
     'ID INTEGER primary key',
     'AUTO INTEGER DEFAULT 0',
     'EVERY INTEGER',
@@ -24,7 +24,7 @@ export class Settings extends Entity implements DBConvertible {
   lastSync: string;
   lang: Lang;
 
-  convertDB(raw: any): Settings {
+  convertFromRepository(raw: any): Settings {
     let result = new Settings();
     
     result.id = raw.ID;

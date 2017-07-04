@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController, LoadingController } from 'ionic-angular';
 import { Observable } from "rxjs";
 
+import { Topic } from '../shared/topic.model';
+import { TopicService } from '../shared/topic.service';
 import { AbstractRefreshableComponent } from '../../shared/abstract-refreshable.component';
 import { TopicEditorComponent } from '../topic-editor/topic-editor.component';
 import { WordListComponent } from '../../word/word-list/word-list.component';
-
-import { Topic } from '../shared/topic.model';
-import { TopicService } from '../shared/topic.service';
 
 @Component({
   selector: 'lgsc-topic-list',

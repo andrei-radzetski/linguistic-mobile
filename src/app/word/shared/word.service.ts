@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of'
 
-import { WordGroup } from './word-group.model';
 import { Topic } from '../../topic/shared/topic.model';
-import { WordDAO } from '../word.dao';
+import { WordGroup } from './word-group.model';
+import { WordRepository } from '../word.repository';
 
 @Injectable()
 export class WordService {
 
-  constructor(private dao: WordDAO) { }
+  constructor(private repository: WordRepository) { }
 
   findAll(): Observable<Array<WordGroup>> {
     // this.dao.findAll();
@@ -17,7 +17,7 @@ export class WordService {
   }
 
   count(): Observable<number> {
-    return this.dao.count();
+    return this.repository.count();
   }
 
   findByTopic(topic: Topic): Observable<Array<WordGroup>> {

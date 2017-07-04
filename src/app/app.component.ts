@@ -3,12 +3,11 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { TabsComponent } from './tabs/tabs.component';
-
+import { AppService } from "./app.service";
 import { DBManagementService } from './db/db-management.service';
 import { DBInitializationService } from './db/db-initialization.service';
-import { AppService } from "./app.service";
 import { TranslateService } from '@ngx-translate/core';
+import { TabsComponent } from './tabs/tabs.component';
 
 @Component({
   selector: 'lnsc-app',

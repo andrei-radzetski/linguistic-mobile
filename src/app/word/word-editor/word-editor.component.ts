@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 
 import { Word } from "../shared/word.model";
 import { Lang } from "../../lang/shared/lang.model";
-import { AbstractEditorComponent } from "../../shared/abstract-editor.component";
 import { AlertService } from '../../shared/alert.service';
 import { LangService } from '../../lang/shared/lang.service';
+import { AbstractEditorComponent } from "../../shared/abstract-editor.component";
 
 @Component({
   selector: 'lgsc-word-editor',
@@ -14,15 +14,16 @@ import { LangService } from '../../lang/shared/lang.service';
 })
 export class WordEditorComponent extends AbstractEditorComponent<Word> implements OnInit {
 
-  langs: Array<Lang> = [];
+  langs: Lang[];
 
   constructor(
-    viewCtrl: ViewController, 
-    params: NavParams, 
+    viewCtrl: ViewController,
+    params: NavParams,
     private alertService: AlertService,
-    private langService: LangService) { 
+    private langService: LangService) {
 
-      super(viewCtrl, params, { create: (): Word => new Word() });
+    super(viewCtrl, params, { create: (): Word => new Word() });
+    this.langs = [];
   }
 
   ngOnInit() {
@@ -46,11 +47,11 @@ export class WordEditorComponent extends AbstractEditorComponent<Word> implement
   }
 
   addSynonym() {
-    
+
   }
 
   addTranslation() {
-    
+
   }
-  
+
 }

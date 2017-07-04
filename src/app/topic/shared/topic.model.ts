@@ -1,10 +1,10 @@
-import { TableMetadata } from '../../db/table-metadata.model';
 import { Entity } from '../../shared/entity.model';
-import { DBConvertible } from '../../db/db-convertible';
+import { RepositoryConvertible } from '../../repository/repository-convertible';
+import { SQLTableMetadata } from '../../sql/sql.table-metadata.model';
 
-export class Topic extends Entity implements DBConvertible {
+export class Topic extends Entity implements RepositoryConvertible {
 
-  public static readonly METADATA = new TableMetadata('TOPICS', [
+  public static readonly METADATA = new SQLTableMetadata('TOPICS', [
     'ID integer primary key',
     'NAME text',
     'COMMENT text',
@@ -29,7 +29,7 @@ export class Topic extends Entity implements DBConvertible {
     return `${this.wordsNumber} word(s)`;
   }
 
-  convertDB(raw: any): Topic {
+  convertFromRepository(raw: any): Topic {
     let result = new Topic();
     result.id = raw.ID;
     result.name = raw.NAME;

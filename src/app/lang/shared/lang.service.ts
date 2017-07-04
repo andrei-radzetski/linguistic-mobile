@@ -2,23 +2,23 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Lang } from './lang.model';
-import { LangDAO } from '../lang.dao';
+import { LangRepository } from '../lang.repository';
 
 @Injectable()
 export class LangService {
 
-  constructor(private dao: LangDAO) { }
+  constructor(private repository: LangRepository) { }
 
   findAll(): Observable<Array<Lang>> {
-    return this.dao.findAll();
+    return this.repository.findAll();
   }
 
   count(): Observable<number> {
-    return this.dao.count();
+    return this.repository.count();
   }
 
   getTechnical(): Observable<Array<Lang>> {
-    return this.dao.findAll();
+    return this.repository.findAll();
   }
 
 }

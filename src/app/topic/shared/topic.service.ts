@@ -2,23 +2,23 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Topic } from './topic.model';
-import { TopicDAO } from '../topic.dao';
+import { TopicRepository } from '../topic.repository';
 
 @Injectable()
 export class TopicService {
 
-  constructor(private dao: TopicDAO) { }
+  constructor(private repository: TopicRepository) { }
 
   findAll(): Observable<Array<Topic>> {
-    return this.dao.findAll();
+    return this.repository.findAll();
   }
 
   save(entity: Topic): Observable<Topic> {
-    return this.dao.save(entity);
-  } 
+    return this.repository.save(entity);
+  }
 
   count(): Observable<number> {
-    return this.dao.count();
+    return this.repository.count();
   }
 
 }

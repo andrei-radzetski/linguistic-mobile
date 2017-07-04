@@ -2,8 +2,8 @@ import { Word } from './word.model';
 
 export class WordGroup {
 
-  public key: string;
-  public words: Array<Word>;
+  key: string;
+  words: Array<Word>;
 
   constructor(key?: string) {
     this.key = key;

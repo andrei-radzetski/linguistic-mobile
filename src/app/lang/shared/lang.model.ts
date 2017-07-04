@@ -1,11 +1,11 @@
-import { TableMetadata } from '../../db/table-metadata.model';
 import { Entity } from '../../shared/entity.model';
+import { RepositoryConvertible } from '../../repository/repository-convertible';
 import { Comparable } from '../../shared/comparable';
-import { DBConvertible } from '../../db/db-convertible';
+import { SQLTableMetadata } from '../../sql/sql.table-metadata.model';
 
-export class Lang extends Entity implements DBConvertible, Comparable<Lang> {
+export class Lang extends Entity implements RepositoryConvertible, Comparable<Lang> {
 
-  public static readonly METADATA = new TableMetadata('LANGS', [
+  public static readonly METADATA = new SQLTableMetadata('LANGS', [
     'ID integer primary key',
     'KEY text',
     'NAME text',
@@ -21,7 +21,7 @@ export class Lang extends Entity implements DBConvertible, Comparable<Lang> {
   public name: string;
   public technical: boolean;
 
-  convertDB(raw: any): Lang {
+  convertFromRepository(raw: any): Lang {
     let result = new Lang();
     result.id = raw.ID;
     result.key = raw.KEY;
