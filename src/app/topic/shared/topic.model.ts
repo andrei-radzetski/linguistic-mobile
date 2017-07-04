@@ -4,14 +4,14 @@ import { SQLTableMetadata } from '../../sql/sql.table-metadata.model';
 
 export class Topic extends Entity implements RepositoryConvertible {
 
-  public static readonly METADATA = new SQLTableMetadata('TOPICS', [
-    'ID integer primary key',
-    'NAME text',
-    'COMMENT text',
-    'CONSTRAINT topic_name_unique UNIQUE (NAME)',
+  public static readonly METADATA = new SQLTableMetadata('topics', [
+    'id INTEGER PRIMARY KEY',
+    'name TEXT',
+    'comment TEXT',
+    'CONSTRAINT topic_name_unique UNIQUE (name)',
   ], [
-    'NAME', 
-    'COMMENT'
+    'name', 
+    'comment'
   ]);
 
   public name: string;
@@ -31,9 +31,9 @@ export class Topic extends Entity implements RepositoryConvertible {
 
   convertFromRepository(raw: any): Topic {
     let result = new Topic();
-    result.id = raw.ID;
-    result.name = raw.NAME;
-    result.comment = raw.COMMENT;
+    result.id = raw.id;
+    result.name = raw.name;
+    result.comment = raw.comment;
 
     return result
   }

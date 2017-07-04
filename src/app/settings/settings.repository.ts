@@ -19,10 +19,10 @@ export class SettingsRepository extends AbstractRepository<Settings> {
 
   getSettings(): Observable<Settings> {
     let sql = 
-    "SELECT ss.*, ll.NAME AS LANG_NAME, ll.KEY AS LANG_KEY, ll.TECHNICAL AS LANG_TECHNICAL " + 
-    "FROM SETTINGS AS ss " + 
-    "LEFT OUTER JOIN LANGS AS ll "+
-    "ON ss.LANG_ID = ll.ID " + 
+    "SELECT settings.*, langs.name AS lang_name, langs.key AS lang_key, langs.technical AS lang_technical " + 
+    "FROM settings " + 
+    "LEFT OUTER JOIN langs "+
+    "ON settings.lang_id = langs.id " + 
     "LIMIT 1";
 
     return this.db.selectOne(new SQLQuery(sql))

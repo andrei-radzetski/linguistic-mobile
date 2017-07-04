@@ -17,11 +17,11 @@
     </ion-list-header>
     <ion-item>
       <ion-label>{{ 'settings.section.sync.auto' | translate }}</ion-label>
-      <ion-toggle [(ngModel)]="settings.auto" color="secondary"></ion-toggle>
+      <ion-toggle [(ngModel)]="settings.autoSync" color="secondary"></ion-toggle>
     </ion-item>
     <ion-item>
       <ion-label>{{ 'settings.section.sync.every' | translate }}</ion-label>
-      <ion-select [disabled]="!settings.auto" interface="action-sheet" [(ngModel)]="settings.every">
+      <ion-select [disabled]="!settings.autoSync" interface="action-sheet" [(ngModel)]="settings.every">
         <ion-option value="15">15 min</ion-option>
         <ion-option value="30">30 min</ion-option>
         <ion-option value="60">60 min</ion-option>

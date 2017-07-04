@@ -5,11 +5,11 @@ import { SQLTableMetadata } from '../../sql/sql.table-metadata.model';
 
 export class Word extends Entity implements RepositoryConvertible {
 
-  public static readonly METADATA = new SQLTableMetadata('WORDS', [
-    'ID integer primary key',
-    'VALUE text'
+  public static readonly METADATA = new SQLTableMetadata('words', [
+    'id INTEGER PRIMARY KEY',
+    'value TEXT'
   ], [
-    'VALUE'
+    'value'
   ]);
 
   public value: string;

@@ -5,16 +5,16 @@ import { SQLTableMetadata } from '../../sql/sql.table-metadata.model';
 
 export class Lang extends Entity implements RepositoryConvertible, Comparable<Lang> {
 
-  public static readonly METADATA = new SQLTableMetadata('LANGS', [
-    'ID integer primary key',
-    'KEY text',
-    'NAME text',
-    'TECHNICAL integer DEFAULT 0',
-    'CONSTRAINT lang_key_unique UNIQUE (KEY)'
+  public static readonly METADATA = new SQLTableMetadata('langs', [
+    'id INTEGER PRIMARY KEY',
+    'key TEXT',
+    'name TEXT',
+    'technical INTEGER DEFAULT 0',
+    'CONSTRAINT lang_key_unique UNIQUE (key)'
   ], [
-    'KEY', 
-    'NAME',
-    'TECHNICAL'
+    'key', 
+    'name',
+    'technical'
   ]);
 
   public key: string;
@@ -23,10 +23,10 @@ export class Lang extends Entity implements RepositoryConvertible, Comparable<La
 
   convertFromRepository(raw: any): Lang {
     let result = new Lang();
-    result.id = raw.ID;
-    result.key = raw.KEY;
-    result.name = raw.NAME;
-    result.technical = raw.TECHNICAL;
+    result.id = raw.id;
+    result.key = raw.key;
+    result.name = raw.name;
+    result.technical = raw.technical;
 
     return result;
   }

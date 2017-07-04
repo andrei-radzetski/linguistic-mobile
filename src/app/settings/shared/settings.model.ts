@@ -5,39 +5,44 @@ import { SQLTableMetadata } from '../../sql/sql.table-metadata.model';
 
 export class Settings extends Entity implements RepositoryConvertible {
 
-  public static readonly METADATA = new SQLTableMetadata('SETTINGS', [
-    'ID INTEGER primary key',
-    'AUTO INTEGER DEFAULT 0',
-    'EVERY INTEGER',
-    'LAST_SYNC text',
-    'LANG_ID INTEGER',
-    'FOREIGN KEY(LANG_ID) REFERENCES LANGS(ID)'
+  public static readonly METADATA = new SQLTableMetadata('settings', [
+    'id INTEGER PRIMARY KEY',
+    'autoSync INTEGER DEFAULT 0',
+    'every INTEGER',
+    'lastSync TEXT',
+    'lang_id INTEGER',
+    'FOREIGN KEY(lang_id) REFERENCES langs(id)'
   ], [
-    'AUTO', 
-    'EVERY',
-    'LAST_SYNC',
-    'LANG_ID'
+    'autoSync', 
+    'every',
+    'lastSync',
+    'lang_id'
   ]);
 
-  auto: boolean = false;
+  autoSync: boolean = false;
   every: number;
   lastSync: string;
   lang: Lang;
 
+  constructor() {
+    super();
+    this.autoSync = false;
+  }
+
   convertFromRepository(raw: any): Settings {
     let result = new Settings();
     
-    result.id = raw.ID;
-    result.auto = raw.AUTO;
-    result.every = raw.EVERY;
-    result.lastSync = raw.LAST_SYNC;
+    result.id = raw.id;
+    result.autoSync = raw.autoSync;
+    result.every = raw.every;
+    result.lastSync = raw.lastSync;
     
-    if (raw.LANG_ID) {
+    if (raw.lang_id) {
       let lang = new Lang();
-      lang.id = raw.LANG_ID;
-      lang.key = raw.LANG_KEY;
-      lang.name = raw.LANG_NAME;
-      lang.technical = raw.LANG_TECHNICAL;
+      lang.id = raw.lang_id;
+      lang.key = raw.lang_key;
+      lang.name = raw.lang_name;
+      lang.technical = raw.lang_technical;
 
       result.lang = lang;
     }
