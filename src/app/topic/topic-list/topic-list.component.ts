@@ -38,14 +38,18 @@ export class TopicListComponent extends AbstractRefreshableComponent implements 
       })
   }
 
-  openEditor() {
+  openEditor(topic: Topic) {
     this.modalCtrl.create(TopicEditorComponent).present();
   }
 
-  seeWords(topic: Topic) {
+  showWords(topic: Topic) {
     this.navCtrl.push(WordListComponent, {
       topic: topic
     });
+  }
+
+  remove(topic: Topic) {
+    console.log('Remove topic');
   }
 
 }

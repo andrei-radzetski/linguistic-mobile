@@ -11,9 +11,9 @@ import { SettingsComponent } from '../settings/settings.component';
 })
 export class TabsComponent {
 
-  public static readonly TOPICS_TAB_INDEX = 1;
+  public static readonly TOPICS_TAB_INDEX = 2;
 
-  public static readonly WORDS_TAB_INDEX = 2;
+  public static readonly WORDS_TAB_INDEX = 1;
 
   homeRoot: any = HomeComponent;
 
