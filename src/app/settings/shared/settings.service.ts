@@ -9,8 +9,8 @@ export class SettingsService {
 
   constructor(private repository: SettingsRepository) { }
 
-  save(entity: Settings): Observable<Settings> {
-    return this.repository.save(entity);
+  saveLang(entity: Settings): Observable<any> {
+    return this.repository.saveLang(entity.id, entity.lang.id);
   }
 
   getSettings(): Observable<Settings> {

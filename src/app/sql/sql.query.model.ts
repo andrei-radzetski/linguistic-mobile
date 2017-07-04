@@ -4,6 +4,11 @@ export class SQLQuery {
 
   constructor(public sql: string, public values?: any) { }
 
+  where(conditions: string): SQLQuery {
+    this.sql = `${this.sql} WHERE ${conditions}`;
+    return this;
+  }
+
   /**
    * Build "CREATE TABLE IF NOT EXISTS" SQL query.
    * 

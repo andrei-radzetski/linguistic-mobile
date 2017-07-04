@@ -11,7 +11,7 @@ import { SQLQuery } from "../sql/sql.query.model";
 export class DBManagementService {
 
   public static readonly SQL_CONFIG: SQLiteDatabaseConfig = {
-    name: 'linguistic1001.db',
+    name: 'linguistic1002.db',
     location: 'default'
   }
 

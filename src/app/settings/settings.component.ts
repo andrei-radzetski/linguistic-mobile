@@ -44,6 +44,7 @@ export class SettingsComponent {
   onLangChange() {
     if (this.settings && this.settings.lang) {
       this.translateService.use(this.settings.lang.key);
+      this.settingsService.saveLang(this.settings).subscribe();
     }
   }
 

@@ -17,13 +17,19 @@ export class SettingsRepository extends AbstractRepository<Settings> {
     return [];
   }
 
+  saveLang(id: number, langId: number): Observable<any> {
+    let sql = `UPDATE settings SET lang_id = ${langId} WHERE id = ${id}`;
+
+    return this.db.executeSQL(new SQLQuery(sql));
+  }
+
   getSettings(): Observable<Settings> {
-    let sql = 
-    "SELECT settings.*, langs.name AS lang_name, langs.key AS lang_key, langs.technical AS lang_technical " + 
-    "FROM settings " + 
-    "LEFT OUTER JOIN langs "+
-    "ON settings.lang_id = langs.id " + 
-    "LIMIT 1";
+    let sql =
+      "SELECT settings.*, langs.name AS lang_name, langs.key AS lang_key, langs.technical AS lang_technical " +
+      "FROM settings " +
+      "LEFT OUTER JOIN langs " +
+      "ON settings.lang_id = langs.id " +
+      "LIMIT 1";
 
     return this.db.selectOne(new SQLQuery(sql))
       .flatMap((element: any) => Observable.of(this.creator.create().convertFromRepository(element)));
