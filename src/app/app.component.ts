@@ -8,6 +8,7 @@ import { TabsComponent } from './tabs/tabs.component';
 import { DBManagementService } from './db/db-management.service';
 import { DBInitializationService } from './db/db-initialization.service';
 import { AppService } from "./app.service";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'lnsc-app',
@@ -23,7 +24,10 @@ export class AppComponent {
     private appService: AppService,
     platform: Platform,
     dbManagementService: DBManagementService,
-    dbInitializationService: DBInitializationService) {
+    dbInitializationService: DBInitializationService,
+    translateService: TranslateService) {
+
+    translateService.setDefaultLang('ru');
 
     platform.ready()
       .then(() => dbManagementService.open()

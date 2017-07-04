@@ -6,6 +6,7 @@ import { HomeModule } from '../home/home.module';
 import { TopicModule } from '../topic/topic.module';
 import { WordModule } from '../word/word.module';
 import { SettingsModule } from '../settings/settings.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { SettingsModule } from '../settings/settings.module';
     TopicModule,
     WordModule,
     SettingsModule,
-    IonicModule
+    IonicModule,
+    TranslateModule.forChild()
   ],
   declarations: [
     TabsComponent

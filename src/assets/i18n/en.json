@@ -1,0 +1,16 @@
+{
+  "app.title": "Linguistic",
+  "app.welcome": "Welcome to Linguistic!",
+
+  "home.title": "Home",
+  "home.card.start-learning": "Start learning",
+  "home.card.add-new-word": "Add new word",
+  "home.card.all-words": "All words",
+  "home.card.all-topics": "All topics",
+
+  "words.title": "Words",
+
+  "topics.title": "Topic",
+
+  "settings.title": "Settings"
+}

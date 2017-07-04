@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Linguistic
+      {{ 'app.title' | translate }}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -13,28 +13,28 @@
 
   <ion-card>
     <ion-card-header text-center>
-      Welcome to Linguistic!
+      {{ 'app.welcome' | translate }}
     </ion-card-header>
     <ion-list>
       <button ion-item (click)="startLearning()">
         <ion-icon name="ios-school-outline" item-start></ion-icon>
-        Start learning
+        {{ 'home.card.start-learning' | translate }}
       </button>
 
       <button ion-item (click)="addWord()">
         <ion-icon name="ios-add-circle-outline" item-start></ion-icon>
-        Add new word
+        {{ 'home.card.add-new-word' | translate }}
       </button>
 
       <button ion-item (click)="openWords()">
         <ion-icon name="ios-list-box-outline" item-start></ion-icon>
-          All words
+        {{ 'home.card.all-words' | translate }}
         <ion-badge item-end color="teal">{{ wordsCount }}</ion-badge>
       </button>
 
       <button ion-item (click)="openTopics()">
         <ion-icon name="ios-folder-outline" item-start></ion-icon>
-        All topics
+        {{ 'home.card.all-topics' | translate }}
         <ion-badge item-end color="teal">{{ topicsCount }}</ion-badge>
       </button>
     </ion-list>

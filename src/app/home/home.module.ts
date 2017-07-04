@@ -8,12 +8,14 @@ import { TopicModule } from '../topic/topic.module';
 import { WordService } from '../word/shared/word.service';
 import { TopicService } from '../topic/shared/topic.service';
 import { AppService } from '../app.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     WordModule,
     TopicModule,
-    IonicModule
+    IonicModule,
+    TranslateModule.forChild()
   ],
   declarations: [
     HomeComponent

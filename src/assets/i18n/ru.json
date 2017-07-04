@@ -1,0 +1,16 @@
+{
+  "app.title": "Linguistic",
+  "app.welcome": "Приветствуем Вас в Linguistic!",
+
+  "home.title": "Главная",
+  "home.card.start-learning": "Начать обучение",
+  "home.card.add-new-word": "Добавить новое слово",
+  "home.card.all-words": "Все слова",
+  "home.card.all-topics": "Все категории",
+
+  "words.title": "Слова",
+
+  "topics.title": "Категории",
+
+  "settings.title": "Настройки"
+}
