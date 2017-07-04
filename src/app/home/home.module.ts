@@ -4,15 +4,15 @@ import { IonicModule } from 'ionic-angular';
 import { HomeComponent } from './home.component';
 
 import { WordModule } from '../word/word.module';
-import { TopicsModule } from '../topics/topics.module';
+import { TopicModule } from '../topic/topic.module';
 import { WordService } from '../word/shared/word.service';
-import { TopicService } from '../topics/shared/topic.service';
+import { TopicService } from '../topic/shared/topic.service';
 import { AppService } from '../app.service';
 
 @NgModule({
   imports: [
     WordModule,
-    TopicsModule,
+    TopicModule,
     IonicModule
   ],
   declarations: [

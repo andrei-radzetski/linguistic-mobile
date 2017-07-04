@@ -1,4 +1,4 @@
-import { Topic } from '../../topics/shared/topic.model';
+import { Topic } from '../../topic/shared/topic.model';
 import { TableMetadata } from '../../db/table-metadata.model';
 import { Entity } from '../../shared/entity.model';
 import { DBConvertible } from '../../db/db-convertible';

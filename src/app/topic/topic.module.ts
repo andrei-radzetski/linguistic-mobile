@@ -33,4 +33,4 @@ import { AlertService } from '../shared/alert.service';
     TopicListComponent
   ]
 })
-export class TopicsModule { }
+export class TopicModule { }

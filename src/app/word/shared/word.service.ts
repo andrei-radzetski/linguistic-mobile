@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of'
 
 import { WordGroup } from './word-group.model';
-import { Topic } from '../../topics/shared/topic.model';
+import { Topic } from '../../topic/shared/topic.model';
 import { WordDAO } from '../word.dao';
 
 @Injectable()

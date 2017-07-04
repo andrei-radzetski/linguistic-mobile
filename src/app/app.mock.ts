@@ -1,6 +1,6 @@
 import { WordGroup } from './word/shared/word-group.model';
 import { Word } from './word/shared/word.model';
-import { Topic } from './topics/shared/topic.model';
+import { Topic } from './topic/shared/topic.model';
 
 export class AppMock {
 

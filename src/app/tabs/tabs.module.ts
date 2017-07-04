@@ -3,14 +3,14 @@ import { IonicModule } from 'ionic-angular';
 
 import { TabsComponent } from './tabs.component';
 import { HomeModule } from '../home/home.module';
-import { TopicsModule } from '../topics/topics.module';
+import { TopicModule } from '../topic/topic.module';
 import { WordModule } from '../word/word.module';
 import { SettingsModule } from '../settings/settings.module';
 
 @NgModule({
   imports: [
     HomeModule,
-    TopicsModule,
+    TopicModule,
     WordModule,
     SettingsModule,
     IonicModule

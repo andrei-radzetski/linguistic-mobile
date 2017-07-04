@@ -6,7 +6,7 @@ import { AbstractRefreshableComponent } from '../shared/abstract-refreshable.com
 import { TabsComponent } from '../tabs/tabs.component'
 import { WordEditorComponent } from '../word/word-editor/word-editor.component'
 import { WordService } from '../word/shared/word.service';
-import { TopicService } from '../topics/shared/topic.service';
+import { TopicService } from '../topic/shared/topic.service';
 import { AppService } from '../app.service';
 
 @Component({

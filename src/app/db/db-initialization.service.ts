@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { DBManagementService } from "./db-management.service";
 import { SQLQuery } from "./sql-query.model";
-import { Topic } from "../topics/shared/topic.model";
+import { Topic } from "../topic/shared/topic.model";
 import { Word } from "../word/shared/word.model";
 import { Lang } from "../lang/shared/lang.model";
 

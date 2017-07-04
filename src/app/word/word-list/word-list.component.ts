@@ -6,7 +6,7 @@ import { WordViewerComponent } from '../word-viewer/word-viewer.component';
 
 import { WordGroup } from '../shared/word-group.model';
 import { Word } from '../shared/word.model';
-import { Topic } from '../../topics/shared/topic.model';
+import { Topic } from '../../topic/shared/topic.model';
 
 import { WordService } from '../shared/word.service';
 
