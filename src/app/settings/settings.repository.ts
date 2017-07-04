@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Settings } from './shared/settings.model';
-import { SQLQuery } from '../sql/sql.query.model';
+import { SQLQueryBuilder } from '../sql/sql.query-builder';
 import { AbstractRepository } from '../repository/abstract.repository';
 import { DBManagementService } from '../db/db-management.service';
 
@@ -18,20 +18,21 @@ export class SettingsRepository extends AbstractRepository<Settings> {
   }
 
   saveLang(id: number, langId: number): Observable<any> {
-    let sql = `UPDATE settings SET lang_id = ${langId} WHERE id = ${id}`;
+    let builder = new SQLQueryBuilder(Settings.METADATA.name)
+      .update(['lang_id'], [langId])
+      .where(`id = ${id}`);
 
-    return this.db.executeSQL(new SQLQuery(sql));
+    return this.db.executeSQL(builder.build());
   }
 
   getSettings(): Observable<Settings> {
-    let sql =
-      "SELECT settings.*, langs.name AS lang_name, langs.key AS lang_key, langs.technical AS lang_technical " +
-      "FROM settings " +
-      "LEFT OUTER JOIN langs " +
-      "ON settings.lang_id = langs.id " +
-      "LIMIT 1";
+    let builder = new SQLQueryBuilder(this.metadata.name)
+      .select('settings.*, langs.name AS lang_name, langs.key AS lang_key, langs.technical AS lang_technical')
+      .leftOuterJoin('langs')
+      .on('settings.lang_id = langs.id')
+      .limit(1);
 
-    return this.db.selectOne(new SQLQuery(sql))
+    return this.db.selectOne(builder.build())
       .flatMap((element: any) => Observable.of(this.creator.create().convertFromRepository(element)));
   }
 

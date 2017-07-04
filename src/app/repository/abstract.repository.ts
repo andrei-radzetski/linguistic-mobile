@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { SQLQuery } from '../sql/sql.query.model';
+import { SQLQueryBuilder } from '../sql/sql.query-builder';
 import { ObjectCreator } from '../shared/object-creator'
 import { DBManagementService } from '../db/db-management.service';
 import { RepositoryConvertible } from './repository-convertible';
@@ -51,8 +51,8 @@ export abstract class AbstractRepository<T extends RepositoryConvertible> {
   }
 
   save(entity: T): Observable<T> {
-    let query = SQLQuery.insertInto(this.metadata.name, this.metadata.order, this.mapValues(entity));
-    return this.db.executeSQL(query);
+    let builder = new SQLQueryBuilder(this.metadata.name).insertInto(this.metadata.order);
+    return this.db.executeSQL(builder.build(this.mapValues(entity)));
   }
 
 }

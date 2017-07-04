@@ -3,6 +3,7 @@ import { SQLite, SQLiteObject, SQLiteDatabaseConfig, SQLiteTransaction } from '@
 import { Observable, Observer } from 'rxjs';
 
 import { SQLQuery } from "../sql/sql.query.model";
+import { SQLQueryBuilder } from "../sql/sql.query-builder";
 
 /**
  * Database service.
@@ -11,7 +12,7 @@ import { SQLQuery } from "../sql/sql.query.model";
 export class DBManagementService {
 
   public static readonly SQL_CONFIG: SQLiteDatabaseConfig = {
-    name: 'linguistic1002.db',
+    name: 'linguistic501.db',
     location: 'default'
   }
 
@@ -131,7 +132,7 @@ export class DBManagementService {
    * @param {string} tableName Table name.
    */
   all(tableName: string): Observable<Array<any>> {
-    return this.select(SQLQuery.selectAll(tableName));
+    return this.select(new SQLQueryBuilder(tableName).select(SQLQuery.ALL_OPERATOR).build());
   }
 
   /**
@@ -140,7 +141,7 @@ export class DBManagementService {
    * @param {string} tableName Table name.
    */
   count(tableName: string): Observable<number> {
-    return this.executeSQL(SQLQuery.count(tableName))
+    return this.executeSQL(new SQLQueryBuilder(tableName).count().build())
       .flatMap((rs: any) => Observable.of(rs.rows))
       .flatMap((rows: any) => rows && rows.length > 0
         ? Observable.of(rows.item(0)[SQLQuery.COUNT_STATEMENT])
