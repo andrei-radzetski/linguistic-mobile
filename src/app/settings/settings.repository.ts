@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { Settings } from './shared/settings.model';
 import { SQLQueryBuilder } from '../sql/sql.query-builder';
 import { AbstractRepository } from '../repository/abstract.repository';
-import { DBManagementService } from '../db/db-management.service';
+import { DatabaseService } from '../database/database.service';
 
 @Injectable()
 export class SettingsRepository extends AbstractRepository<Settings> {
 
-  constructor(db: DBManagementService) {
+  constructor(db: DatabaseService) {
     super(db, Settings.METADATA, { create: (): Settings => new Settings() });
   }
 

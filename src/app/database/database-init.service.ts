@@ -7,12 +7,12 @@ import { Lang } from "../lang/shared/lang.model";
 import { Settings } from "../settings/shared/settings.model";
 import { SQLQuery } from "../sql/sql.query.model";
 import { SQLQueryBuilder } from "../sql/sql.query-builder";
-import { DBManagementService } from "./db-management.service";
+import { DatabaseService } from "./database.service";
 
 @Injectable()
-export class DBInitializationService {
+export class DatabaseInitService {
 
-  constructor(private dbManagementService: DBManagementService) { }
+  constructor(private db: DatabaseService) { }
 
   /**
    * Initialize tables and data in the database.
@@ -33,7 +33,7 @@ export class DBInitializationService {
     let langs = new SQLQueryBuilder(Lang.METADATA.name).createTableIfNotExists(Lang.METADATA.declaration);
     let settings = new SQLQueryBuilder(Settings.METADATA.name).createTableIfNotExists(Settings.METADATA.declaration);
 
-    return this.dbManagementService.executeSQLs(topics.build(), words.build(), langs.build(), settings.build());
+    return this.db.executeSQLs(topics.build(), words.build(), langs.build(), settings.build());
   }
 
   private initializeLangsData(): Observable<any> {
@@ -41,24 +41,24 @@ export class DBInitializationService {
     let ru = new SQLQueryBuilder(Lang.METADATA.name).insertInto(Lang.METADATA.order).build(['ru', 'Русский', 1]);
     let pl = new SQLQueryBuilder(Lang.METADATA.name).insertInto(Lang.METADATA.order).build(['pl', 'Polski', 1]);
 
-    return this.dbManagementService
+    return this.db
       .count(Lang.METADATA.name)
       .flatMap((value: number) => {
         return value > 0
           ? Observable.empty()
-          : this.dbManagementService.executeSQLs(en, ru, pl);
+          : this.db.executeSQLs(en, ru, pl);
       });
   }
 
   private initializeSettingsData(): Observable<any> {
     let settings = new SQLQueryBuilder(Settings.METADATA.name).insertInto(Settings.METADATA.order);
 
-    return this.dbManagementService
+    return this.db
       .count(Settings.METADATA.name)
       .flatMap((value: number) => {
         return value > 0
           ? Observable.empty()
-          : this.dbManagementService.executeSQLs(settings.build([0, 15, null, 1]));
+          : this.db.executeSQLs(settings.build([0, 15, null, 1]));
       });
   }
 

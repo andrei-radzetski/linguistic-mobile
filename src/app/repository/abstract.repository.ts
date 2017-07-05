@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 import { SQLQueryBuilder } from '../sql/sql.query-builder';
 import { ObjectCreator } from '../shared/object-creator'
-import { DBManagementService } from '../db/db-management.service';
+import { DatabaseService } from '../database/database.service';
 import { RepositoryConvertible } from './repository-convertible';
 import { SQLTableMetadata } from "../sql/sql.table-metadata.model";
 
@@ -15,7 +15,7 @@ export abstract class AbstractRepository<T extends RepositoryConvertible> {
   /**
    * Database instance.
    */
-  protected db: DBManagementService;
+  protected db: DatabaseService;
 
   /**
    * Entity table metadata.
@@ -27,7 +27,7 @@ export abstract class AbstractRepository<T extends RepositoryConvertible> {
    */
   protected creator: ObjectCreator<T>;
 
-  constructor(db: DBManagementService, metadata: SQLTableMetadata, creator: ObjectCreator<T>) {
+  constructor(db: DatabaseService, metadata: SQLTableMetadata, creator: ObjectCreator<T>) {
     this.db = db;
     this.metadata = metadata;
     this.creator = creator;

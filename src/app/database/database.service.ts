@@ -9,14 +9,14 @@ import { SQLQueryBuilder } from "../sql/sql.query-builder";
  * Database service.
  */
 @Injectable()
-export class DBManagementService {
+export class DatabaseService {
 
   public static readonly SQL_CONFIG: SQLiteDatabaseConfig = {
     name: 'linguistic502.db',
     location: 'default'
   }
 
-  private _db: SQLiteObject;
+  private db: SQLiteObject;
 
   constructor(private sqlite: SQLite) { }
 
@@ -25,21 +25,20 @@ export class DBManagementService {
    * 
    * @return {Observable<SQLiteObject>} Returns observable.
    */
-  open(): Observable<SQLiteObject> {
+  open(): Observable<any> {
     return Observable.create((observer: Observer<SQLiteObject>) => {
-      this.sqlite.create(DBManagementService.SQL_CONFIG)
-        .then((db: SQLiteObject) => this.onOpenSuccess(observer, db))
-        .catch(e => this.onOpenFailure(observer, e));
+      this.sqlite.create(DatabaseService.SQL_CONFIG)
+        .then((db: SQLiteObject) => {
+          console.log('Database was opened successful.');
+          this.db = db;
+          observer.complete();
+        })
+        .catch(e => {
+          console.log('Database opening failure.')
+          console.log(e)
+          observer.error(e);
+        });
     });
-  }
-
-  /**
-   * Get database instance.
-   * 
-   * @return {SQLiteObject} Returns database.
-   */
-  get db(): SQLiteObject {
-    return this._db;
   }
 
   /**
@@ -148,25 +147,6 @@ export class DBManagementService {
         : Observable.of(0));
   }
 
-  /**
-   * Successful on open database callback.
-   */
-  private onOpenSuccess(observer: Observer<SQLiteObject>, db: SQLiteObject) {
-    console.log('Database was opened successful.');
-    this._db = db;
-    observer.next(db);
-    observer.complete();
-  }
-
-  /**
-   * Failure on open database callback.
-   */
-  private onOpenFailure(observer: Observer<SQLiteObject>, e: any) {
-    console.log('Database opening failure.')
-    console.log(e)
-    observer.error(e);
-  }
-
   private logSuccessfulExecution(sql: string) {
     console.log(`SQL was executed: "${sql}"`);
   }
@@ -174,6 +154,7 @@ export class DBManagementService {
   private logFailureExecution(sql: string, e: any) {
     console.log(`SQL was NOT executed: "${sql}"`);
     console.log(e)
+    console.log('-------------------------------')
   }
 
 }
