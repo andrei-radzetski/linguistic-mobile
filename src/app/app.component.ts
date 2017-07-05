@@ -7,6 +7,8 @@ import { TabsComponent } from './tabs/tabs.component';
 import { AppService } from "./app.service";
 import { TranslateService } from '@ngx-translate/core';
 
+import { DatabaseService1 } from "./database/database.service.1";
+
 @Component({
   selector: 'lnsc-app',
   templateUrl: 'app.component.html'
@@ -20,13 +22,33 @@ export class AppComponent {
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private appService: AppService,
-    private translateService: TranslateService) {
+    private translateService: TranslateService,
+    private databaseService: DatabaseService1) {
 
-      platform.ready()
+    platform.ready()
       .then(() => this.ready())
       .catch((e) => this.error(e));
+  }
 
-    // platform.ready()
+  private ready() {
+    this.databaseService.open().subscribe(
+      () => { },
+      e => this.error(e),
+      () => {
+        console.log('Application initialization complete.');
+        this.translateService.setDefaultLang('en');
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+        this.appService.emit();
+      });
+  }
+
+  private error(e: any) {
+    console.log('Application initialization error.');
+    console.log(e);
+  }
+
+  // platform.ready()
     //   .then(() => dbManagementService.open()
     //     .concat(dbInitializationService.initialize())
     //     .concat(settingsService.getCurrentLangKey().flatMap((value: string) => {
@@ -38,19 +60,5 @@ export class AppComponent {
     //     e => this.onApplicationError(e),
     //     () => this.onApplicationReady()))
     //   .catch(e => this.onApplicationError(e));
-  }
-
-  private ready() {
-    console.log('Application initialization complete.');
-    this.translateService.setDefaultLang('en');
-    this.statusBar.styleDefault();
-    this.splashScreen.hide();
-    this.appService.emit();
-  }
-
-  private error(e: any) {
-    console.log('Application initialization error.');
-    console.log(e);
-  }
 
 }

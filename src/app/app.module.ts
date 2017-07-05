@@ -7,9 +7,10 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpModule, Http } from '@angular/http';
 
-import { TabsModule } from './tabs/tabs.module';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
+import { TabsModule } from './tabs/tabs.module';
+import { DatabaseModule } from './database/database.module';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,7 +29,8 @@ export function HttpLoaderFactory(http: Http) {
         deps: [Http]
       }
     }),
-    TabsModule
+    TabsModule,
+    DatabaseModule
   ],
   declarations: [
     AppComponent
