@@ -14,9 +14,6 @@ import { TopicListComponent } from './topic-list/topic-list.component';
   ],
   entryComponents: [
     TopicListComponent
-  ],
-  exports: [
-    TopicListComponent
   ]
 })
 export class TopicModule { }

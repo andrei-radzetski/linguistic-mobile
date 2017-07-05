@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { ModalController } from 'ionic-angular';
 
 import { AppService } from '../app.service';
+import { WordEditorComponent } from '../word/word-editor/word-editor.component';
 
 @Component({
   selector: 'lgsc-home',
@@ -8,7 +10,10 @@ import { AppService } from '../app.service';
 })
 export class HomeComponent {
 
-  constructor(appService: AppService) {
+  constructor(
+    appService: AppService, 
+    private modalController: ModalController) {
+
     appService.ready().subscribe(() => console.log('AppService ready -> HomeComponent'));
   }
 
@@ -17,7 +22,7 @@ export class HomeComponent {
   }
 
   addNewWord() {
-    console.log('HomeComponent -> Add New Word Event');
+    this.modalController.create(WordEditorComponent).present();
   }
 
 }

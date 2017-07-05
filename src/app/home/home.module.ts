@@ -3,19 +3,18 @@ import { IonicModule } from 'ionic-angular';
 import { TranslateModule } from "@ngx-translate/core";
 
 import { HomeComponent } from './home.component'
+import { WordModule } from "../word/word.module";
 
 @NgModule({
   imports: [
     IonicModule,
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    WordModule
   ],
   declarations: [
     HomeComponent
   ],
   entryComponents: [
-    HomeComponent
-  ],
-  exports: [
     HomeComponent
   ]
 })

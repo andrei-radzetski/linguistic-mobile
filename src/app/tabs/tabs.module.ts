@@ -22,9 +22,6 @@ import { SettingsModule } from '../settings/settings.module';
   ],
   entryComponents: [
     TabsComponent
-  ],
-  exports: [
-    TabsComponent
   ]
 })
 export class TabsModule { }

@@ -3,6 +3,7 @@ import { IonicModule } from 'ionic-angular';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { WordListComponent } from './word-list/word-list.component';
+import { WordEditorComponent } from './word-editor/word-editor.component';
 
 @NgModule({
   imports: [
@@ -10,13 +11,12 @@ import { WordListComponent } from './word-list/word-list.component';
     TranslateModule.forChild()
   ],
   declarations: [
-    WordListComponent
+    WordListComponent,
+    WordEditorComponent
   ],
   entryComponents: [
-    WordListComponent
-  ],
-  exports: [
-    WordListComponent
+    WordListComponent,
+    WordEditorComponent
   ]
 })
 export class WordModule { }

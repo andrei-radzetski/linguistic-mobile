@@ -14,9 +14,6 @@ import { SettingsComponent } from './settings.component'
   ],
   entryComponents: [
     SettingsComponent
-  ],
-  exports: [
-    SettingsComponent
   ]
 })
 export class SettingsModule { }
