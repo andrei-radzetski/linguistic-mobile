@@ -3,13 +3,15 @@ import { IonicModule } from 'ionic-angular';
 import { TranslateModule } from "@ngx-translate/core";
 
 import { TabsComponent } from './tabs.component';
-import { HomeModule } from "../home/home.module";
+import { HomeModule } from '../home/home.module';
+import { WordModule } from '../word/word.module';
 
 @NgModule({
   imports: [
     IonicModule,
     TranslateModule.forChild(),
-    HomeModule
+    HomeModule,
+    WordModule
   ],
   declarations: [
     TabsComponent

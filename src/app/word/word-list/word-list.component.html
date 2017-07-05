@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Words
+      {{ 'words.title' | translate }}
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only color="teal" (click)="openEditor()">
@@ -12,7 +12,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar></ion-searchbar>
+  Words
+  <!--<ion-searchbar></ion-searchbar>
   <ng-template ngFor let-wordGroup [ngForOf]="wordGroups">
     <ion-item-group *ngIf="wordGroup.hasWords()">
       <ion-item-divider color="light">{{ wordGroup.key }}</ion-item-divider>
@@ -21,5 +22,5 @@
       <p>{{ word.translation.value }}</p>
     </button>
     </ion-item-group>
-  </ng-template>
+  </ng-template>-->
 </ion-content>
