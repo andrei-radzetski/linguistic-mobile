@@ -9,9 +9,8 @@ import { HttpModule, Http } from '@angular/http';
 
 import { DBModule } from './db/db.module';
 import { TabsModule } from './tabs/tabs.module';
+import { SettingsModule } from './settings/settings.module';
 import { AppService } from './app.service';
-import { DBInitializationService } from './db/db-initialization.service';
-import { DBManagementService } from './db/db-management.service';
 import { AppComponent } from './app.component';
 
 export function HttpLoaderFactory(http: Http) {
@@ -22,6 +21,7 @@ export function HttpLoaderFactory(http: Http) {
   imports: [
     TabsModule,
     DBModule,
+    SettingsModule,
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(AppComponent),
@@ -43,8 +43,6 @@ export function HttpLoaderFactory(http: Http) {
   providers: [
     StatusBar,
     SplashScreen,
-    DBManagementService,
-    DBInitializationService,
     AppService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]

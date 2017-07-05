@@ -12,7 +12,7 @@ import { SQLQueryBuilder } from "../sql/sql.query-builder";
 export class DBManagementService {
 
   public static readonly SQL_CONFIG: SQLiteDatabaseConfig = {
-    name: 'linguistic501.db',
+    name: 'linguistic502.db',
     location: 'default'
   }
 

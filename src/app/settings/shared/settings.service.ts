@@ -13,6 +13,10 @@ export class SettingsService {
     return this.repository.saveLang(entity.id, entity.lang.id);
   }
 
+  getCurrentLangKey(): Observable<string> {
+    return this.repository.getCurrentLangKey();
+  }
+
   getSettings(): Observable<Settings> {
     return this.repository.getSettings();
   }

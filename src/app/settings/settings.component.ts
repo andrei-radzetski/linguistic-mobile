@@ -63,7 +63,6 @@ export class SettingsComponent {
         return this.settingsService.getSettings();
       }).flatMap((value: Settings) => {
         this.settings = value;
-        this.onLangChange();
         return Observable.empty();
       });
   }
