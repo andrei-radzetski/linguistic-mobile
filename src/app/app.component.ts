@@ -7,7 +7,7 @@ import { TabsComponent } from './tabs/tabs.component';
 import { AppService } from "./app.service";
 import { TranslateService } from '@ngx-translate/core';
 
-import { DatabaseService1 } from "./database/database.service.1";
+import { DatabaseService } from "./database/database.service";
 
 @Component({
   selector: 'lnsc-app',
@@ -23,7 +23,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private appService: AppService,
     private translateService: TranslateService,
-    private databaseService: DatabaseService1) {
+    private databaseService: DatabaseService) {
 
     platform.ready()
       .then(() => this.ready())
