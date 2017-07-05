@@ -7,10 +7,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 // import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // import { HttpModule, Http } from '@angular/http';
 
+import { TabsModule } from './tabs/tabs.module';
 // import { DBModule } from './db/db.module';
-// import { TabsModule } from './tabs/tabs.module';
 // import { SettingsModule } from './settings/settings.module';
 import { AppComponent } from './app.component';
+import { TabsComponent } from './tabs/tabs.component';
 import { AppService } from './app.service';
 
 // export function HttpLoaderFactory(http: Http) {
@@ -19,7 +20,7 @@ import { AppService } from './app.service';
 
 @NgModule({
   imports: [
-    // TabsModule,
+    TabsModule,
     // DBModule,
     // SettingsModule,
     BrowserModule,
@@ -37,7 +38,8 @@ import { AppService } from './app.service';
     AppComponent
   ],
   entryComponents: [
-    AppComponent
+    AppComponent,
+    TabsComponent
   ],
   bootstrap: [IonicApp],
   providers: [

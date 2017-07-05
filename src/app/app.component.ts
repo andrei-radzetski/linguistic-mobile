@@ -4,12 +4,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 // import { Observable } from 'rxjs';
 
-import { AppService } from "./app.service";
+import { TabsComponent } from './tabs/tabs.component';
 // import { DBManagementService } from './db/db-management.service';
 // import { SettingsService } from './settings/shared/settings.service';
 // import { DBInitializationService } from './db/db-initialization.service';
 // import { TranslateService } from '@ngx-translate/core';
-// import { TabsComponent } from './tabs/tabs.component';
+import { AppService } from "./app.service";
 
 @Component({
   selector: 'lnsc-app',
@@ -17,7 +17,7 @@ import { AppService } from "./app.service";
 })
 export class AppComponent {
 
-  root: any = null;//TabsComponent;
+  root: any = TabsComponent;
 
   constructor(
     platform: Platform,
