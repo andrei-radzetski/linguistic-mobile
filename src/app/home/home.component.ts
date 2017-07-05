@@ -12,4 +12,12 @@ export class HomeComponent {
     appService.ready().subscribe(() => console.log('AppService ready -> HomeComponent'));
   }
 
+  startLearning() {
+    console.log('HomeComponent -> Start Learning Event');
+  }
+
+  addNewWord() {
+    console.log('HomeComponent -> Add New Word Event');
+  }
+
 }

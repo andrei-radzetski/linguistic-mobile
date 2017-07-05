@@ -1,6 +1,5 @@
 {
   "app.title": "Linguistic",
-  "app.welcome": "Приветствуем Вас в Linguistic!",
 
   "button.done": "Готово",
   "button.cancel": "Отмена",
@@ -9,6 +8,7 @@
   "button.sync": "Синхронизировать",
 
   "home.title": "Главная",
+  "home.welcome": "Приветствуем Вас в Linguistic!",
   "home.card.start-learning": "Начать обучение",
   "home.card.add-new-word": "Добавить новое слово",
   "home.card.all-words": "Все слова",

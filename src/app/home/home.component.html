@@ -6,15 +6,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="outer-content">
-  Home
-  <!--<ion-refresher (ionRefresh)="refresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
+<ion-content class="outer-content">
   <ion-card>
     <ion-card-header text-center>
-      {{ 'app.welcome' | translate }}
+      {{ 'home.welcome' | translate }}
     </ion-card-header>
     <ion-list>
       <button ion-item (click)="startLearning()">
@@ -22,22 +17,10 @@
         {{ 'home.card.start-learning' | translate }}
       </button>
 
-      <button ion-item (click)="addWord()">
+      <button ion-item (click)="addNewWord()">
         <ion-icon name="ios-add-circle-outline" item-start></ion-icon>
         {{ 'home.card.add-new-word' | translate }}
       </button>
-
-      <button ion-item (click)="openWords()">
-        <ion-icon name="ios-list-box-outline" item-start></ion-icon>
-        {{ 'home.card.all-words' | translate }}
-        <ion-badge item-end color="teal">{{ wordsCount }}</ion-badge>
-      </button>
-
-      <button ion-item (click)="openTopics()">
-        <ion-icon name="ios-folder-outline" item-start></ion-icon>
-        {{ 'home.card.all-topics' | translate }}
-        <ion-badge item-end color="teal">{{ topicsCount }}</ion-badge>
-      </button>
     </ion-list>
-  </ion-card>-->
+  </ion-card>
 </ion-content>

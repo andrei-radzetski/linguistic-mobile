@@ -1,6 +1,5 @@
 {
   "app.title": "Linguistic",
-  "app.welcome": "Welcome to Linguistic!",
   
   "button.done": "Done",
   "button.cancel": "Cancel",
@@ -9,6 +8,7 @@
   "button.sync": "Sync",
 
   "home.title": "Home",
+  "home.welcome": "Welcome to Linguistic!",
   "home.card.start-learning": "Start learning",
   "home.card.add-new-word": "Add new word",
   "home.card.all-words": "All words",
