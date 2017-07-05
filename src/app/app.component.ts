@@ -5,11 +5,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 // import { Observable } from 'rxjs';
 
 import { TabsComponent } from './tabs/tabs.component';
+import { AppService } from "./app.service";
+import { TranslateService } from '@ngx-translate/core';
 // import { DBManagementService } from './db/db-management.service';
 // import { SettingsService } from './settings/shared/settings.service';
 // import { DBInitializationService } from './db/db-initialization.service';
-// import { TranslateService } from '@ngx-translate/core';
-import { AppService } from "./app.service";
 
 @Component({
   selector: 'lnsc-app',
@@ -24,15 +24,15 @@ export class AppComponent {
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private appService: AppService,
+    private translateService: TranslateService
     // dbManagementService: DBManagementService,
     // dbInitializationService: DBInitializationService,
-    // translateService: TranslateService,
     // settingsService: SettingsService
     ) {
 
       platform.ready()
-      .then(() => this.onApplicationReady())
-      .catch((e) => this.onApplicationError(e));
+      .then(() => this.ready())
+      .catch((e) => this.error(e));
 
     // platform.ready()
     //   .then(() => dbManagementService.open()
@@ -48,16 +48,17 @@ export class AppComponent {
     //   .catch(e => this.onApplicationError(e));
   }
 
-  private onApplicationError(e: any) {
-    console.log('Application initialization error.');
-    console.log(e);
-  }
-
-  private onApplicationReady() {
+  private ready() {
     console.log('Application initialization complete.');
+    this.translateService.setDefaultLang('en');
     this.statusBar.styleDefault();
     this.splashScreen.hide();
     this.appService.emit();
+  }
+
+  private error(e: any) {
+    console.log('Application initialization error.');
+    console.log(e);
   }
 
 }
