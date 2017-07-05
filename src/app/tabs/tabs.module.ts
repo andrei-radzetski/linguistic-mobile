@@ -6,6 +6,7 @@ import { TabsComponent } from './tabs.component';
 import { HomeModule } from '../home/home.module';
 import { WordModule } from '../word/word.module';
 import { TopicModule } from '../topic/topic.module';
+import { SettingsModule } from '../settings/settings.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { TopicModule } from '../topic/topic.module';
     TranslateModule.forChild(),
     HomeModule,
     WordModule,
-    TopicModule
+    TopicModule,
+    SettingsModule
   ],
   declarations: [
     TabsComponent

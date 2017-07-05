@@ -1,17 +1,11 @@
-import { NgModule } from "@angular/core";
-import { IonicModule } from "ionic-angular";
-import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { IonicModule } from 'ionic-angular';
+import { TranslateModule } from "@ngx-translate/core";
 
-import { LangModule } from '../lang/lang.module';
-import { TranslateModule } from '@ngx-translate/core';
-import { SettingsComponent } from "./settings.component";
-import { SettingsService } from './shared/settings.service';
-import { SettingsRepository } from './settings.repository';
+import { SettingsComponent } from './settings.component'
 
 @NgModule({
   imports: [
-    LangModule,
-    CommonModule,
     IonicModule,
     TranslateModule.forChild()
   ],
@@ -20,10 +14,6 @@ import { SettingsRepository } from './settings.repository';
   ],
   entryComponents: [
     SettingsComponent
-  ],
-  providers: [
-    SettingsService,
-    SettingsRepository
   ],
   exports: [
     SettingsComponent
