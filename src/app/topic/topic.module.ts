@@ -3,6 +3,7 @@ import { IonicModule } from 'ionic-angular';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { TopicListComponent } from './topic-list/topic-list.component';
+import { TopicEditorComponent } from "./topic-editor/topic-editor.component"
 
 @NgModule({
   imports: [
@@ -10,10 +11,12 @@ import { TopicListComponent } from './topic-list/topic-list.component';
     TranslateModule.forChild()
   ],
   declarations: [
-    TopicListComponent
+    TopicListComponent,
+    TopicEditorComponent
   ],
   entryComponents: [
-    TopicListComponent
+    TopicListComponent,
+    TopicEditorComponent
   ]
 })
 export class TopicModule { }

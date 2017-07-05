@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-buttons start>
       <button ion-button color="teal" (click)="cancel()">
-        Cancel
+        {{ 'button.cancel' | translate }}
       </button>
     </ion-buttons>
     <ion-title>
@@ -10,7 +10,7 @@
     </ion-title>
     <ion-buttons end>
       <button ion-button color="teal" (click)="done()">
-        Done
+        {{ 'button.done' | translate }}
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -19,19 +19,19 @@
 <ion-content class="outer-content">
   
   <!--Topic-->
-  <ion-list>
+  <!--<ion-list>
     <ion-list-header>Topic</ion-list-header>
     <ion-item>
       <ion-input type="text" placeholder="Input topic name" [(ngModel)]="object.name"></ion-input>
     </ion-item>
-  </ion-list>
+  </ion-list>-->
 
   <!--Comments-->
-  <ion-list>
+  <!--<ion-list>
     <ion-list-header>Comment</ion-list-header>
     <ion-item>
       <ion-textarea rows="3" placeholder="Input comment" [(ngModel)]="object.comment"></ion-textarea>
     </ion-item>
-  </ion-list>
+  </ion-list>-->
 
 </ion-content>

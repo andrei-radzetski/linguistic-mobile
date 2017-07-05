@@ -1,40 +1,23 @@
 import { Component } from '@angular/core';
-import { ViewController, NavParams } from 'ionic-angular';
-import { Observable } from 'rxjs';
-
-import { Topic } from "../shared/topic.model";
-import { TopicService } from '../shared/topic.service';
-import { AlertService } from '../../shared/alert.service';
-import { AbstractEditorComponent } from "../../shared/abstract-editor.component";
-import { StringUtil } from '../../shared/string-util';
+import { ViewController } from "ionic-angular";
 
 @Component({
   selector: 'lgsc-topic-editor',
   templateUrl: 'topic-editor.component.html'
 })
-export class TopicEditorComponent extends AbstractEditorComponent<Topic> {
+export class TopicEditorComponent {
 
   constructor(
-    viewCtrl: ViewController,
-    params: NavParams,
-    private topicService: TopicService,
-    private alertService: AlertService) {
+    private viewController: ViewController) {
 
-    super(viewCtrl, params, { create: (): Topic => new Topic() });
   }
 
-  validate(): Observable<any> {
-    return StringUtil.isBlank(this.object.name)
-      ? Observable.throw(new Error('Invalid topic data.'))
-      : Observable.empty();
+  cancel() {
+    this.viewController.dismiss();
   }
 
-  save(): Observable<any> {
-    return this.topicService.save(this.object);
-  }
-
-  onError(err: Error) {
-    this.alertService.error(err.message);
+  done() {
+    this.viewController.dismiss();
   }
 
 }
