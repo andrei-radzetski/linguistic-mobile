@@ -6,7 +6,7 @@ import { Database } from "./database";
 import { DatabaseMock } from "./database.mock";
 import { DatabaseSQLite } from "./database.sqlite";
 import { SQLQuery } from "../sql/sql.query.model";
-import { DatabaseResult } from "./database-result.model";
+import { DatabaseResultSet } from "./database-result-set.model";
 
 /**
  * Database service.
@@ -69,7 +69,7 @@ export class DatabaseService implements Database {
     return this.db.executeSQLs(...queries);
   }
 
-  executeSQL(query: SQLQuery): Observable<DatabaseResult> {
+  executeSQL(query: SQLQuery): Observable<DatabaseResultSet> {
     return this.db.executeSQL(query);
   }
 

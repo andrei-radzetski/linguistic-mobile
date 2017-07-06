@@ -1,4 +1,4 @@
-export interface DatabaseRows {
+export interface DatabaseNativeRows {
 
   length: number;
 

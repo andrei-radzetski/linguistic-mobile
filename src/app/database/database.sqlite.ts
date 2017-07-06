@@ -3,8 +3,9 @@ import { SQLiteDatabaseConfig, SQLiteObject, SQLite, SQLiteTransaction } from '@
 import { Observable, Observer } from 'rxjs';
 
 import { Database } from "./database";
-import { DatabaseResult } from "./database-result.model";
-import { DatabaseError } from "./database-error";
+import { DatabaseResultSet } from "./database-result-set.model";
+import { DatabaseNativeResultSet } from "./native/database-native-result-set";
+import { DatabaseNativeError } from "./native/database-native-error";
 import { SQLQuery } from "../sql/sql.query.model";
 import { SQLQueryBuilder } from "../sql/sql.query-builder";
 
@@ -18,7 +19,7 @@ import { SQLQueryBuilder } from "../sql/sql.query-builder";
 export class DatabaseSQLite implements Database {
 
   public static readonly DATABASE_CONFIG: SQLiteDatabaseConfig = {
-    name: 'linguistic11.db',
+    name: 'linguistic15.db',
     location: 'default'
   }
 
@@ -65,14 +66,14 @@ export class DatabaseSQLite implements Database {
     });
   }
 
-  executeSQL(query: SQLQuery): Observable<DatabaseResult> {
+  executeSQL(query: SQLQuery): Observable<DatabaseResultSet> {
     return Observable.create((observer: Observer<any>) => {
       this.db.executeSql(query.sql, query.values)
-        .then((res: DatabaseResult) => {
+        .then((res: DatabaseNativeResultSet) => {
           this.logSuccessfulExecution(query.sql);
-          observer.next(res);
+          observer.next(new DatabaseResultSet(res));
           observer.complete();
-        }).catch((err: DatabaseError)  => {
+        }).catch((err: DatabaseNativeError)  => {
           this.logFailureExecution(query.sql, err);
           observer.error(err);
         })
