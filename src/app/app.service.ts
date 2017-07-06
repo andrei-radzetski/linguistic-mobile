@@ -1,7 +1,11 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { SQLiteDatabaseConfig } from '@ionic-native/sqlite';
+
+import { APP_CONFIG } from './app.config';
 
 /**
- * Global application service.
+ * Global application service. 
+ * Contains configs.
  * Emit in the AppComponent and subscribe anywhere.
  */
 @Injectable()
@@ -21,6 +25,16 @@ export class AppService {
    */
   ready(): EventEmitter<any> {
     return this.emitter;
+  }
+
+  /**
+   * Returns database config.
+   */
+  getSQLiteDatabaseConfig(): SQLiteDatabaseConfig {
+    return {
+      name: `${APP_CONFIG.db.name}_v${APP_CONFIG.db.version}.db`,
+      location: APP_CONFIG.db.location
+    };
   }
 
 }

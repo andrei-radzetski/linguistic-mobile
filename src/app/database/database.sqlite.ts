@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { SQLiteDatabaseConfig, SQLiteObject, SQLite, SQLiteTransaction } from '@ionic-native/sqlite';
+import { SQLiteObject, SQLite, SQLiteTransaction } from '@ionic-native/sqlite';
 import { Observable, Observer } from 'rxjs';
 
+import { AppService } from "../app.service";
 import { Database } from "./database";
 import { DatabaseResultSet } from "./database-result-set.model";
 import { DatabaseNativeResultSet, DatabaseNativeError, DatabaseNativeTransactionResultSet } from "./database-native.model";
@@ -17,18 +18,13 @@ import { SQLQueryBuilder } from "../sql/sql.query-builder";
 @Injectable()
 export class DatabaseSQLite implements Database {
 
-  public static readonly DATABASE_CONFIG: SQLiteDatabaseConfig = {
-    name: 'linguistic18.db',
-    location: 'default'
-  }
-
   private db: SQLiteObject;
 
-  constructor(private sqlite: SQLite) { }
+  constructor(private sqlite: SQLite, private appService: AppService) { }
 
   open(): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
-      this.sqlite.create(DatabaseSQLite.DATABASE_CONFIG)
+      this.sqlite.create(this.appService.getSQLiteDatabaseConfig())
         .then((db: SQLiteObject) => {
           console.log('SQLite database was opened successful.');
           this.db = db;
