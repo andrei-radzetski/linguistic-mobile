@@ -3,9 +3,9 @@ import { ModalController, LoadingController } from 'ionic-angular';
 import { Observable } from "rxjs";
 
 import { TopicEditorComponent } from '../topic-editor/topic-editor.component';
+import { RefreshableComponent } from "../../shared/refreshable.component"
 import { Topic } from "../shared/topic.model"
 import { TopicService } from "../shared/topic.service"
-import { RefreshableComponent } from "../../shared/refreshable.component"
 
 @Component({
   selector: 'lgsc-topic-list',

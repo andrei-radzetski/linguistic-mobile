@@ -4,6 +4,8 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { WordListComponent } from './word-list/word-list.component';
 import { WordEditorComponent } from './word-editor/word-editor.component';
+import { WordRepository } from "./word.repository"
+import { WordService } from "./shared/word.service"
 
 @NgModule({
   imports: [
@@ -17,6 +19,10 @@ import { WordEditorComponent } from './word-editor/word-editor.component';
   entryComponents: [
     WordListComponent,
     WordEditorComponent
+  ], 
+  providers: [
+    WordRepository,
+    WordService
   ]
 })
 export class WordModule { }

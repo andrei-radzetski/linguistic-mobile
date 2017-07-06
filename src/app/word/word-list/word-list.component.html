@@ -12,9 +12,13 @@
 </ion-header>
 
 <ion-content>
-  Words
-  <!--<ion-searchbar></ion-searchbar>
-  <ng-template ngFor let-wordGroup [ngForOf]="wordGroups">
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-searchbar></ion-searchbar>
+
+  <!--<ng-template ngFor let-wordGroup [ngForOf]="wordGroups">
     <ion-item-group *ngIf="wordGroup.hasWords()">
       <ion-item-divider color="light">{{ wordGroup.key }}</ion-item-divider>
       <button detail-none ion-item *ngFor="let word of wordGroup.words" (click)="openViewer(word)">
