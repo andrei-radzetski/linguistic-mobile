@@ -66,6 +66,14 @@ export class SQLQueryBuilder {
   }
 
   /**
+   * Initialize "DELETE FROM ..." SQL query.
+   */
+  delete(): SQLQueryBuilder {
+    this.sql = `DELETE FROM ${this.tableName}`;
+    return this;
+  }
+
+  /**
    * Add "WHERE" clause.
    * 
    * @param {string} conditions Conditions.

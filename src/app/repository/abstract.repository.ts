@@ -5,6 +5,7 @@ import { SQLQueryBuilder } from '../sql/sql.query-builder';
 import { ObjectCreator } from '../shared/object-creator'
 import { DatabaseService } from '../database/database.service';
 import { DatabaseResultSet } from "../database/database-result-set.model";
+import { DatabaseNativeResultSet } from "../database/database-native.model";
 import { RepositoryConvertible } from './repository-convertible';
 import { SQLTableMetadata } from "../sql/sql.table-metadata.model";
 
@@ -56,9 +57,14 @@ export abstract class AbstractRepository<T extends RepositoryConvertible> {
       .toArray();
   }
 
-  save(entity: T): Observable<DatabaseResultSet> {
+  save(entity: T): Observable<DatabaseNativeResultSet> {
     let builder = new SQLQueryBuilder(this.metadata.name).insertInto(this.metadata.order);
     return this.db.executeSQL(builder.build(this.mapValues(entity)));
+  }
+
+  delete(id: number): Observable<DatabaseNativeResultSet> {
+    let builder = new SQLQueryBuilder(this.metadata.name).delete().where(`id = ${id}`);
+    return this.db.executeSQL(builder.build());
   }
 
 }

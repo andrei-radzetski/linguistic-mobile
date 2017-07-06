@@ -58,9 +58,10 @@ export class TopicListComponent extends AbstractRefreshableComponent implements 
     this.modalController.create(TopicEditorComponent).present();
   }
 
-  remove(item: ItemSliding, topic: Topic) {
+  delete(item: ItemSliding, topic: Topic) {
     console.log('TopicListComponent -> Remove Event.');
     item.close();
+    this.topicService.delete(topic.id).subscribe(() => this.initialize());
   }
 
 }

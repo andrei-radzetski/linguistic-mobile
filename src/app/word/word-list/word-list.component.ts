@@ -51,7 +51,7 @@ export class WordListComponent extends AbstractRefreshableComponent implements O
     this.modalController.create(WordEditorComponent).present();
   }
 
-  remove(item: ItemSliding, word: Word) {
+  delete(item: ItemSliding, word: Word) {
     console.log('WordListComponent -> Remove Event.');
     item.close();
   }
