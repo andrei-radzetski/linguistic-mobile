@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 
 import { TopicEditorComponent } from '../topic-editor/topic-editor.component';
 import { TopicViewerComponent } from '../topic-viewer/topic-viewer.component';
-import { RefreshableComponent } from "../../shared/refreshable.component"
+import { AbstractRefreshableComponent } from "../../shared/abstract-refreshable.component"
 import { Topic } from "../shared/topic.model"
 import { TopicService } from "../shared/topic.service"
 
@@ -12,7 +12,7 @@ import { TopicService } from "../shared/topic.service"
   selector: 'lgsc-topic-list',
   templateUrl: 'topic-list.component.html'
 })
-export class TopicListComponent extends RefreshableComponent implements OnInit {
+export class TopicListComponent extends AbstractRefreshableComponent implements OnInit {
 
   topics: Topic[];
 

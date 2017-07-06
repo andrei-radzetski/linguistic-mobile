@@ -4,7 +4,7 @@ import { LoadingController, Refresher } from 'ionic-angular';
 /**
  * Abstract refreshable component. Extends if component must be refreshed manually by swipe down.
  */
-export abstract class RefreshableComponent {
+export abstract class AbstractRefreshableComponent {
 
   constructor(protected loadingController: LoadingController) { }
 
