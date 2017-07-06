@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, LoadingController } from 'ionic-angular';
+import { ModalController, LoadingController, ItemSliding } from 'ionic-angular';
 import { Observable } from "rxjs";
 
 import { TopicEditorComponent } from '../topic-editor/topic-editor.component';
@@ -36,8 +36,20 @@ export class TopicListComponent extends RefreshableComponent implements OnInit {
     this.initialize();
   }
 
-  openEditor() {
+  add(topic: Topic) {
+    console.log('TopicListComponent -> Add Event.');
     this.modalController.create(TopicEditorComponent).present();
+  }
+
+  edit(item: ItemSliding, topic: Topic) {
+    console.log('TopicListComponent -> Edit Event.');
+    item.close();
+    this.modalController.create(TopicEditorComponent).present();
+  }
+
+  remove(item: ItemSliding, topic: Topic) {
+    console.log('TopicListComponent -> Remove Event.');
+    item.close();
   }
 
 }

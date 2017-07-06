@@ -18,8 +18,17 @@ export class DatabaseInitService {
    */
   initialize(): Observable<any> {
     return this.initializeTables()
-      .concat(this.initializeLangsData());
+      .concat(this.initializeLangsData())
+      .concat(this.testTopics());
     // .concat(this.initializeSettingsData());
+  }
+
+  private testTopics(): Observable<any> {
+    let o1 = new SQLQueryBuilder(Topic.METADATA.name).insertInto(Topic.METADATA.order).build(['Topic 1', 'Topic comment 1']);
+    let o2 = new SQLQueryBuilder(Topic.METADATA.name).insertInto(Topic.METADATA.order).build(['Topic 2', 'Topic comment 2']);
+
+    return this.db.count(Topic.METADATA.name)
+      .flatMap((value: number) => value > 0 ? Observable.empty() : this.db.executeSQLs(o1, o2));
   }
 
   /**

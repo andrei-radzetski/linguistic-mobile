@@ -17,6 +17,7 @@
   "words.title": "Слова",
 
   "topics.title": "Категории",
+  "topics.item.words-number": "Количество слов:",
 
   "settings.title": "Настройки",
   "settings.section.sync.title": "Синхронизация",

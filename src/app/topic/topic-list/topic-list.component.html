@@ -17,21 +17,22 @@
   </ion-refresher>
 
   <ion-searchbar></ion-searchbar>
-<!--
+
   <ion-list>
-    <ion-item-sliding *ngFor="let topic of topics">
-      <button ion-item (click)="showWords(topic)">
+    <ion-item-sliding *ngFor="let topic of topics" #slidingItem>
+      <button ion-item (click)="openWords(topic)">
         <h2>{{ topic.name }}</h2>
-        <p>{{ topic.getWordsNumberTemplate() }}</p>
+        <p>{{ 'topics.item.words-number' | translate }} {{ topic.wordsNumber }}</p>
       </button>
       <ion-item-options side="right">
-        <button ion-button color="teal" (click)="openEditor(topic)">
-          Edit
+        <button ion-button color="teal" (click)="edit(slidingItem, topic)">
+          {{ 'button.edit' | translate }}
         </button>
-        <button ion-button color="danger" (click)="remove(topic)">
-          Remove
+        <button ion-button color="danger" (click)="remove(slidingItem, topic)">
+          {{ 'button.remove' | translate }}
         </button>
       </ion-item-options>
     </ion-item-sliding>
-  </ion-list>-->
+  </ion-list>
+
 </ion-content>

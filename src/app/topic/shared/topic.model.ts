@@ -25,10 +25,6 @@ export class Topic extends Entity implements RepositoryConvertible {
     this.wordsNumber = 0;
   }
 
-  getWordsNumberTemplate(): string {
-    return `${this.wordsNumber} word(s)`;
-  }
-
   convertFromRepository(raw: any): Topic {
     let result = new Topic();
     result.id = raw.id;
