@@ -3,6 +3,7 @@ import { ModalController, LoadingController, ItemSliding } from 'ionic-angular';
 import { Observable } from "rxjs";
 
 import { TopicEditorComponent } from '../topic-editor/topic-editor.component';
+import { TopicViewerComponent } from '../topic-viewer/topic-viewer.component';
 import { RefreshableComponent } from "../../shared/refreshable.component"
 import { Topic } from "../shared/topic.model"
 import { TopicService } from "../shared/topic.service"
@@ -48,6 +49,7 @@ export class TopicListComponent extends RefreshableComponent implements OnInit {
   detail(item: ItemSliding, topic: Topic) {
     console.log('TopicListComponent -> Detail Event.');
     item.close();
+    this.modalController.create(TopicViewerComponent, { data: topic }).present();
   }
 
   edit(item: ItemSliding, topic: Topic) {

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button color="teal" (click)="edit()">
+        {{ 'button.edit' | translate }}
+      </button>
+    </ion-buttons>
+    <ion-title>
+      {{ topic.name }}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button color="teal" (click)="done()">
+        {{ 'button.done' | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <ion-card>
+    <ion-card-header>
+      {{ topic.name }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ 'topics.item.words-number' | translate }} {{ topic.wordsNumber }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      {{ 'topics.item.comment' | translate }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ topic.comment }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

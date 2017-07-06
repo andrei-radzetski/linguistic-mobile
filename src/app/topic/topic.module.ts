@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { TopicListComponent } from './topic-list/topic-list.component';
 import { TopicEditorComponent } from "./topic-editor/topic-editor.component"
+import { TopicViewerComponent } from "./topic-viewer/topic-viewer.component"
 import { TopicRepository } from "./topic.repository"
 import { TopicService } from "./shared/topic.service"
 
@@ -14,11 +15,13 @@ import { TopicService } from "./shared/topic.service"
   ],
   declarations: [
     TopicListComponent,
-    TopicEditorComponent
+    TopicEditorComponent,
+    TopicViewerComponent
   ],
   entryComponents: [
     TopicListComponent,
-    TopicEditorComponent
+    TopicEditorComponent,
+    TopicViewerComponent
   ],
   providers: [
     TopicRepository,
