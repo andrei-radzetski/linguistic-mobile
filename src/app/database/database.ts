@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 
 import { SQLQuery } from "../sql/sql.query.model";
 import { DatabaseResultSet } from "./database-result-set.model";
+import { DatabaseNativeTransactionResultSet } from "./database-native.model";
 
 /**
  * Database interface. Provides commons database methods.
@@ -27,7 +28,7 @@ export interface Database {
    * 
    * @param {SQLQuery[]} queries SQL queries.
    */
-  executeSQLs(...queries: SQLQuery[]): Observable<any>;
+  executeSQLs(...queries: SQLQuery[]): Observable<DatabaseNativeTransactionResultSet>;
 
   /**
    * Execute single SQL query.

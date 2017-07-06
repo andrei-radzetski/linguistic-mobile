@@ -1,8 +1,10 @@
 import { Observable } from "rxjs";
 
-import { DatabaseNativeResultSet } from "./native/database-native-result-set"
-import { DatabaseNativeRows } from "./native/database-native-rows"
+import { DatabaseNativeResultSet, DatabaseNativeRows } from "./database-native.model"
 
+/**
+ * Database result set wrapper.
+ */
 export class DatabaseResultSet implements DatabaseNativeResultSet {
 
   constructor(private native: DatabaseNativeResultSet) { }
@@ -19,6 +21,9 @@ export class DatabaseResultSet implements DatabaseNativeResultSet {
     return this.native.insertId;
   }
 
+  /**
+   * Returns items.
+   */
   get(): Observable<any> {
     return Observable
       .range(0, this.native.rows.length)

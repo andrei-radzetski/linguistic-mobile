@@ -7,6 +7,7 @@ import { DatabaseMock } from "./database.mock";
 import { DatabaseSQLite } from "./database.sqlite";
 import { SQLQuery } from "../sql/sql.query.model";
 import { DatabaseResultSet } from "./database-result-set.model";
+import { DatabaseNativeTransactionResultSet } from "./database-native.model";
 
 /**
  * Database service.
@@ -69,7 +70,7 @@ export class DatabaseService implements Database {
     return this.db.count(tableName);
   }
 
-  executeSQLs(...queries: SQLQuery[]): Observable<any> {
+  executeSQLs(...queries: SQLQuery[]): Observable<DatabaseNativeTransactionResultSet> {
     return this.db.executeSQLs(...queries);
   }
 
