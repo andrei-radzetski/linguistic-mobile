@@ -39,7 +39,9 @@ export abstract class AbstractRepository<T extends RepositoryConvertible> {
    * 
    * @param {T} entity Current object.
    */
-  abstract mapValues(entity: T): Array<any>;
+  protected mapValues(entity: T): Array<any> {
+    throw new Error('Unsupported operation.');
+  }
 
   count(): Observable<number> {
     return this.db.count(this.metadata.name);
@@ -54,7 +56,7 @@ export abstract class AbstractRepository<T extends RepositoryConvertible> {
       .toArray();
   }
 
-  save(entity: T): Observable<any> {
+  save(entity: T): Observable<DatabaseResultSet> {
     let builder = new SQLQueryBuilder(this.metadata.name).insertInto(this.metadata.order);
     return this.db.executeSQL(builder.build(this.mapValues(entity)));
   }

@@ -9,14 +9,6 @@ export class LangService {
 
   constructor(private repository: LangRepository) { }
 
-  findAll(): Observable<Array<Lang>> {
-    return this.repository.findAll();
-  }
-
-  count(): Observable<number> {
-    return this.repository.count();
-  }
-
   getTechnical(): Observable<Array<Lang>> {
     return this.repository.findAll();
   }
