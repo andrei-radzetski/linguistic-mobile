@@ -39,7 +39,7 @@ export class SQLQueryBuilder {
       if (i > 0) {
         this.sql += ', '
       }
-      this.sql += `${fields[i]} = ${values[i]}`;
+      this.sql += `${fields[i]} = '${values[i]}'`;
     }
     return this;
   }

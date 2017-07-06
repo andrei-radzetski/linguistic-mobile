@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 
 import { SQLQuery } from "../sql/sql.query.model";
+import { DatabaseResult } from "./database-result.model";
 
 /**
  * Database interface. Provides commons database methods.
@@ -26,7 +27,7 @@ export interface Database {
    * 
    * @param {SQLQuery} query SQL query.
    */
-  executeSQL(query: SQLQuery): Observable<any>;
+  executeSQL(query: SQLQuery): Observable<DatabaseResult>;
 
   /**
    * Execute SQL query and get rows.

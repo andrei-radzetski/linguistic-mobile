@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { Component } from "@angular/core";
+import { Platform } from "ionic-angular";
+import { StatusBar } from "@ionic-native/status-bar";
+import { SplashScreen } from "@ionic-native/splash-screen";
 
-import { TabsComponent } from './tabs/tabs.component';
+import { TabsComponent } from "./tabs/tabs.component";
 import { AppService } from "./app.service";
 import { TranslateService } from '@ngx-translate/core';
-
 import { DatabaseService } from "./database/database.service";
+import { DatabaseInitService } from "./database/database-init.service";
 
 @Component({
   selector: 'lnsc-app',
@@ -23,7 +23,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private appService: AppService,
     private translateService: TranslateService,
-    private databaseService: DatabaseService) {
+    private databaseService: DatabaseService,
+    private databaseInitService: DatabaseInitService) {
 
     platform.ready()
       .then(() => this.ready())
@@ -31,7 +32,9 @@ export class AppComponent {
   }
 
   private ready() {
-    this.databaseService.open().subscribe(
+    this.databaseService.open()
+      .flatMap(() => this.databaseInitService.initialize())
+      .subscribe(
       () => { },
       e => this.error(e),
       () => {
@@ -49,16 +52,16 @@ export class AppComponent {
   }
 
   // platform.ready()
-    //   .then(() => dbManagementService.open()
-    //     .concat(dbInitializationService.initialize())
-    //     .concat(settingsService.getCurrentLangKey().flatMap((value: string) => {
-    //       translateService.setDefaultLang(value);
-    //       return Observable.empty();
-    //     }))
-    //     .subscribe(
-    //     () => { },
-    //     e => this.onApplicationError(e),
-    //     () => this.onApplicationReady()))
-    //   .catch(e => this.onApplicationError(e));
+  //   .then(() => dbManagementService.open()
+  //     .concat(dbInitializationService.initialize())
+  //     .concat(settingsService.getCurrentLangKey().flatMap((value: string) => {
+  //       translateService.setDefaultLang(value);
+  //       return Observable.empty();
+  //     }))
+  //     .subscribe(
+  //     () => { },
+  //     e => this.onApplicationError(e),
+  //     () => this.onApplicationReady()))
+  //   .catch(e => this.onApplicationError(e));
 
 }

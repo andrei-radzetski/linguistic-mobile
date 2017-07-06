@@ -13,25 +13,31 @@ import { SQLQuery } from "../sql/sql.query.model";
 @Injectable()
 export class DatabaseMock implements Database {
 
+  private static readonly MOCK_RESULT_SET = { rows: { length: 0 } };
+
   open(): Observable<any> {
     console.log('Mock database was opened successful.');
-    return Observable.empty();
+    return Observable.of(null);
   }
 
   executeSQLs(...queries: SQLQuery[]): Observable<any> {
-    return Observable.empty();
+    return Observable
+      .from(queries)
+      .flatMap((query: SQLQuery) => this.executeSQL(query));
   }
 
   executeSQL(query: SQLQuery): Observable<any> {
-    return Observable.empty();
+    this.logSQL(query);
+    return Observable.of(DatabaseMock.MOCK_RESULT_SET);
   }
 
   select(query: SQLQuery): Observable<Array<any>> {
-    return Observable.empty();
+    this.logSQL(query);
+    return Observable.of([]);
   };
 
   selectOne(query: SQLQuery): Observable<any> {
-    return Observable.empty();
+    return this.executeSQL(query);
   }
 
   all(tableName: string): Observable<Array<any>> {
@@ -40,6 +46,10 @@ export class DatabaseMock implements Database {
 
   count(tableName: string): Observable<number> {
     return Observable.empty();
+  }
+
+  private logSQL(query: SQLQuery) {
+    console.log(`SQL was executed (Mock DB): "${query.sql}"`);
   }
 
 }

@@ -50,7 +50,7 @@ export abstract class AbstractRepository<T extends RepositoryConvertible> {
       .toArray();
   }
 
-  save(entity: T): Observable<T> {
+  save(entity: T): Observable<any> {
     let builder = new SQLQueryBuilder(this.metadata.name).insertInto(this.metadata.order);
     return this.db.executeSQL(builder.build(this.mapValues(entity)));
   }

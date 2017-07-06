@@ -5,7 +5,6 @@ import { Topic } from "../topic/shared/topic.model";
 import { Word } from "../word/shared/word.model";
 import { Lang } from "../lang/shared/lang.model";
 import { Settings } from "../settings/shared/settings.model";
-import { SQLQuery } from "../sql/sql.query.model";
 import { SQLQueryBuilder } from "../sql/sql.query-builder";
 import { DatabaseService } from "./database.service";
 
@@ -19,8 +18,8 @@ export class DatabaseInitService {
    */
   initialize(): Observable<any> {
     return this.initializeTables()
-      .concat(this.initializeLangsData())
-      .concat(this.initializeSettingsData());
+      .concat(this.initializeLangsData());
+    // .concat(this.initializeSettingsData());
   }
 
   /**
@@ -41,25 +40,26 @@ export class DatabaseInitService {
     let ru = new SQLQueryBuilder(Lang.METADATA.name).insertInto(Lang.METADATA.order).build(['ru', 'Русский', 1]);
     let pl = new SQLQueryBuilder(Lang.METADATA.name).insertInto(Lang.METADATA.order).build(['pl', 'Polski', 1]);
 
-    return this.db
-      .count(Lang.METADATA.name)
-      .flatMap((value: number) => {
-        return value > 0
-          ? Observable.empty()
-          : this.db.executeSQLs(en, ru, pl);
-      });
+    return this.db.executeSQLs(en, ru, pl);
+    // return this.db
+    //   .count(Lang.METADATA.name)
+    //   .flatMap((value: number) => {
+    //     return value > 0
+    //       ? Observable.empty()
+    //       : this.db.executeSQLs(en, ru, pl);
+    //   });
   }
 
-  private initializeSettingsData(): Observable<any> {
-    let settings = new SQLQueryBuilder(Settings.METADATA.name).insertInto(Settings.METADATA.order);
+  // private initializeSettingsData(): Observable<any> {
+  //   let settings = new SQLQueryBuilder(Settings.METADATA.name).insertInto(Settings.METADATA.order);
 
-    return this.db
-      .count(Settings.METADATA.name)
-      .flatMap((value: number) => {
-        return value > 0
-          ? Observable.empty()
-          : this.db.executeSQLs(settings.build([0, 15, null, 1]));
-      });
-  }
+  //   return this.db
+  //     .count(Settings.METADATA.name)
+  //     .flatMap((value: number) => {
+  //       return value > 0
+  //         ? Observable.empty()
+  //         : this.db.executeSQLs(settings.build([0, 15, null, 1]));
+  //     });
+  // }
 
 }
