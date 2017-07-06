@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Database } from "./database";
 import { SQLQuery } from "../sql/sql.query.model";
 import { SQLQueryBuilder } from "../sql/sql.query-builder";
+import { DatabaseResultSet } from "./database-result-set.model";
+import { DatabaseNativeResultSet, DatabaseNativeTransactionResultSet } from "./database-native.model";
 
 /**
  * Mock database implementation.
@@ -14,7 +16,28 @@ import { SQLQueryBuilder } from "../sql/sql.query-builder";
 @Injectable()
 export class DatabaseMock implements Database {
 
-  private static readonly MOCK_RESULT_SET = { rows: { length: 0 } };
+  private static readonly MOCK: DatabaseResultSet = new DatabaseResultSet({
+    rows: {
+      length: 0,
+      item: (index: number) => { }
+    },
+    rowsAffected: 0,
+    insertId: 0
+  });
+
+  private static readonly MOCK_TX: DatabaseNativeTransactionResultSet = {
+    db: {
+      openargs: {
+        name: "name_mock",
+        location: "location_mock",
+        dblocation: "dblocation_mock",
+      },
+      dbname: "dbname_mock"
+    },
+    txlock: false,
+    readOnly: false,
+    executes: []
+  };
 
   open(): Observable<any> {
     console.log('Mock database was opened successful.');
@@ -26,15 +49,16 @@ export class DatabaseMock implements Database {
     return Observable.of(0);
   }
 
-  executeSQLs(...queries: SQLQuery[]): Observable<any> {
-    return Observable
-      .from(queries)
-      .flatMap((query: SQLQuery) => this.executeSQL(query));
+  executeSQLs(...queries: SQLQuery[]): Observable<DatabaseNativeTransactionResultSet> {
+    return Observable.from(queries)
+      .map((query: SQLQuery) => this.log(query))
+      .toArray()
+      .flatMap(() => Observable.of(DatabaseMock.MOCK_TX));
   }
 
-  executeSQL(query: SQLQuery): Observable<any> {
+  executeSQL(query: SQLQuery): Observable<DatabaseResultSet> {
     this.log(query);
-    return Observable.of(DatabaseMock.MOCK_RESULT_SET);
+    return Observable.of(DatabaseMock.MOCK);
   }
 
   private log(query: SQLQuery) {

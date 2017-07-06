@@ -4,6 +4,8 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { TopicListComponent } from './topic-list/topic-list.component';
 import { TopicEditorComponent } from "./topic-editor/topic-editor.component"
+import { TopicRepository } from "./topic.repository"
+import { TopicService } from "./shared/topic.service"
 
 @NgModule({
   imports: [
@@ -17,6 +19,10 @@ import { TopicEditorComponent } from "./topic-editor/topic-editor.component"
   entryComponents: [
     TopicListComponent,
     TopicEditorComponent
+  ],
+  providers: [
+    TopicRepository,
+    TopicService
   ]
 })
 export class TopicModule { }
