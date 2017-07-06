@@ -16,7 +16,14 @@ export interface Database {
   open(): Observable<any>;
 
   /**
-   * Execute SQL queries in transaction.
+   * Get count of the specified table.
+   * 
+   * @param {string} tableName Table name.
+   */
+  count(tableName: string): Observable<number>;
+
+  /**
+   * Execute SQL queries in a transaction.
    * 
    * @param {SQLQuery[]} queries SQL queries.
    */
@@ -28,33 +35,5 @@ export interface Database {
    * @param {SQLQuery} query SQL query.
    */
   executeSQL(query: SQLQuery): Observable<DatabaseResultSet>;
-
-  /**
-   * Execute SQL query and get rows.
-   * 
-   * @param {SQLQuery} query SQL query.
-   */
-  select(query: SQLQuery): Observable<Array<any>>;
-
-  /**
-   * Execute SQL query and get first result.
-   * 
-   * @param {SQLQuery} query SQL query.
-   */
-  selectOne(query: SQLQuery): Observable<any>;
-
-  /**
-   * Get all orders of the specified table.
-   *
-   * @param {string} tableName Table name.
-   */
-  all(tableName: string): Observable<Array<any>>;
-
-  /**
-   * Get count of the specified table.
-   * 
-   * @param {string} tableName Table name.
-   */
-  count(tableName: string): Observable<number>;
 
 }

@@ -26,23 +26,28 @@ export class SettingsRepository extends AbstractRepository<Settings> {
   }
 
   getCurrentLangKey(): Observable<string> {
-    let builder = new SQLQueryBuilder(this.metadata.name)
+    let sql = new SQLQueryBuilder(this.metadata.name)
       .select('langs.key')
       .leftOuterJoin('langs')
       .on('settings.lang_id = langs.id')
-      .limit(1);
+      .limit(1)
+      .build();
 
-    return this.db.selectOne(builder.build()).flatMap((element: any) => Observable.of(element['key']));
+    return this.db
+      .executeSQL(sql)
+      .flatMap((element: any) => Observable.of(element.key));
   }
 
   getSettings(): Observable<Settings> {
-    let builder = new SQLQueryBuilder(this.metadata.name)
+    let sql = new SQLQueryBuilder(this.metadata.name)
       .select('settings.*, langs.name AS lang_name, langs.key AS lang_key, langs.technical AS lang_technical')
       .leftOuterJoin('langs')
       .on('settings.lang_id = langs.id')
-      .limit(1);
+      .limit(1)
+      .build();
 
-    return this.db.selectOne(builder.build())
+    return this.db
+      .executeSQL(sql)
       .flatMap((element: any) => Observable.of(this.creator.create().convertFromRepository(element)));
   }
 

@@ -1,8 +1,10 @@
 import { Observable } from 'rxjs';
 
+import { SQLQuery } from '../sql/sql.query.model';
 import { SQLQueryBuilder } from '../sql/sql.query-builder';
 import { ObjectCreator } from '../shared/object-creator'
 import { DatabaseService } from '../database/database.service';
+import { DatabaseResultSet } from "../database/database-result-set.model";
 import { RepositoryConvertible } from './repository-convertible';
 import { SQLTableMetadata } from "../sql/sql.table-metadata.model";
 
@@ -44,8 +46,10 @@ export abstract class AbstractRepository<T extends RepositoryConvertible> {
   }
 
   findAll(): Observable<Array<T>> {
-    return this.db.all(this.metadata.name)
-      .flatMap((data: any[]) => Observable.from(data))
+    let sql = new SQLQueryBuilder(this.metadata.name).select(SQLQuery.ALL_OPERATOR).build();
+
+    return this.db.executeSQL(sql)
+      .flatMap((res: DatabaseResultSet) => res.get())
       .flatMap((element: any) => Observable.of(this.creator.create().convertFromRepository(element)))
       .toArray();
   }

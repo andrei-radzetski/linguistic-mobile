@@ -65,28 +65,16 @@ export class DatabaseService implements Database {
     });
   }
 
+  count(tableName: string): Observable<number> {
+    return this.db.count(tableName);
+  }
+
   executeSQLs(...queries: SQLQuery[]): Observable<any> {
     return this.db.executeSQLs(...queries);
   }
 
   executeSQL(query: SQLQuery): Observable<DatabaseResultSet> {
     return this.db.executeSQL(query);
-  }
-
-  select(query: SQLQuery): Observable<Array<any>> {
-    return this.db.select(query);
-  }
-
-  selectOne(query: SQLQuery): Observable<any> {
-    return this.db.selectOne(query);
-  }
-
-  all(tableName: string): Observable<Array<any>> {
-    return this.db.all(tableName);
-  }
-
-  count(tableName: string): Observable<number> {
-    return this.db.count(tableName);
   }
 
 }

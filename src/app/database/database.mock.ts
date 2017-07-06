@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 
 import { Database } from "./database";
 import { SQLQuery } from "../sql/sql.query.model";
+import { SQLQueryBuilder } from "../sql/sql.query-builder";
 
 /**
  * Mock database implementation.
@@ -20,6 +21,11 @@ export class DatabaseMock implements Database {
     return Observable.of(null);
   }
 
+  count(tableName: string): Observable<number> {
+    this.log(new SQLQueryBuilder(tableName).count().build());
+    return Observable.of(0);
+  }
+
   executeSQLs(...queries: SQLQuery[]): Observable<any> {
     return Observable
       .from(queries)
@@ -27,28 +33,11 @@ export class DatabaseMock implements Database {
   }
 
   executeSQL(query: SQLQuery): Observable<any> {
-    this.logSQL(query);
+    this.log(query);
     return Observable.of(DatabaseMock.MOCK_RESULT_SET);
   }
 
-  select(query: SQLQuery): Observable<Array<any>> {
-    this.logSQL(query);
-    return Observable.of([]);
-  };
-
-  selectOne(query: SQLQuery): Observable<any> {
-    return this.executeSQL(query);
-  }
-
-  all(tableName: string): Observable<Array<any>> {
-    return Observable.empty();
-  }
-
-  count(tableName: string): Observable<number> {
-    return Observable.empty();
-  }
-
-  private logSQL(query: SQLQuery) {
+  private log(query: SQLQuery) {
     console.log(`SQL was executed (Mock DB): "${query.sql}"`);
   }
 
