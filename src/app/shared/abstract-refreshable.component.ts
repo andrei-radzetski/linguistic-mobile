@@ -19,6 +19,7 @@ export abstract class AbstractRefreshableComponent {
    */
   initialize() {
     let loading = this.loadingController.create();
+    loading.present();
     this.load().subscribe(
       () => { },
       (err) => {
