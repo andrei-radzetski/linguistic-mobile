@@ -3,6 +3,7 @@
   
   "button.done": "Done",
   "button.cancel": "Cancel",
+  "button.detail": "Detail",
   "button.edit": "Edit",
   "button.remove": "Remove",
   "button.sync": "Sync",

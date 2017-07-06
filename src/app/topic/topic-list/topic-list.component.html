@@ -4,7 +4,7 @@
       {{ 'topics.title' | translate }}
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="teal" (click)="openEditor()">
+      <button ion-button icon-only color="teal" (click)="add()">
         <ion-icon name="ios-add-outline"></ion-icon>
       </button>
     </ion-buttons>
@@ -20,11 +20,14 @@
 
   <ion-list>
     <ion-item-sliding *ngFor="let topic of topics" #slidingItem>
-      <button ion-item (click)="openWords(topic)">
+      <button ion-item (click)="view(topic)">
         <h2>{{ topic.name }}</h2>
         <p>{{ 'topics.item.words-number' | translate }} {{ topic.wordsNumber }}</p>
       </button>
       <ion-item-options side="right">
+        <button ion-button color="primary" (click)="detail(slidingItem, topic)">
+          {{ 'button.detail' | translate }}
+        </button>
         <button ion-button color="teal" (click)="edit(slidingItem, topic)">
           {{ 'button.edit' | translate }}
         </button>

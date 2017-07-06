@@ -66,7 +66,11 @@ export class Word extends Entity implements RepositoryConvertible {
   }
 
   convertFromRepository(raw: any): Word {
-    return new Word();
+    let result = new Word();
+    result.id = raw.id;
+    result.value = raw.value;
+
+    return result
   }
 
 }

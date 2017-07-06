@@ -36,9 +36,18 @@ export class TopicListComponent extends RefreshableComponent implements OnInit {
     this.initialize();
   }
 
-  add(topic: Topic) {
+  add() {
     console.log('TopicListComponent -> Add Event.');
     this.modalController.create(TopicEditorComponent).present();
+  }
+
+  view(topic: Topic) {
+    console.log('TopicListComponent -> View Event.');
+  }
+
+  detail(item: ItemSliding, topic: Topic) {
+    console.log('TopicListComponent -> Detail Event.');
+    item.close();
   }
 
   edit(item: ItemSliding, topic: Topic) {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ModalController, LoadingController } from "ionic-angular";
+import { ModalController, LoadingController, ItemSliding } from "ionic-angular";
 import { Observable } from "rxjs";
 
 import { WordEditorComponent } from '../word-editor/word-editor.component';
@@ -36,8 +36,24 @@ export class WordListComponent extends RefreshableComponent implements OnInit {
     this.initialize();
   }
 
-  openEditor() {
+  add() {
+    console.log("WordListComponent -> Add Event.");
     this.modalController.create(WordEditorComponent).present();
+  }
+
+  view(word: Word) {
+    console.log("WordListComponent -> View Event.");
+  }
+
+  edit(item: ItemSliding, word: Word) {
+    console.log('WordListComponent -> Edit Event.');
+    item.close();
+    this.modalController.create(WordEditorComponent).present();
+  }
+
+  remove(item: ItemSliding, word: Word) {
+    console.log('WordListComponent -> Remove Event.');
+    item.close();
   }
 
 }
