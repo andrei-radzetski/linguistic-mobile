@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { TabsModule } from './tabs/tabs.module';
 import { DatabaseModule } from './database/database.module';
+import { AlertService } from './shared/dialog/alert.service';
+import { ConfirmService } from './shared/dialog/confirm.service';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -45,6 +47,8 @@ export function HttpLoaderFactory(http: Http) {
     StatusBar,
     SplashScreen,
     AppService,
+    AlertService,
+    ConfirmService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

@@ -1,5 +1,6 @@
 {
   "app.title": "Linguistic",
+  "app.error": "Error",
 
   "button.done": "Готово",
   "button.cancel": "Отмена",
@@ -7,6 +8,7 @@
   "button.edit": "Изменить",
   "button.remove": "Удалить",
   "button.sync": "Синхронизировать",
+  "button.ok": "Ок",
 
   "home.title": "Главная",
   "home.welcome": "Приветствуем Вас в Linguistic!",
